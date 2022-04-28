@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jit on Lectern</title>
+    <link>https://qducasse.github.io/tags/jit/</link>
+    <description>Recent content in jit on Lectern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/jit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NoJITsu: Locking Down JavaScript Engines</title>
+      <link>https://qducasse.github.io/posts/nojitsu/</link>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/nojitsu/</guid>
+      <description>Introduction This post presents the article by Park et al. entitled &amp;ldquo;NoJITsu: Locking Down JavaScript Engines&amp;rdquo;. The authors present both an attack against JIT compilers (injecting malicious bytecodes) and a defense solution. We will focus on the defense part and look at the NoJITsu design in details along with its security and performance analysis.
+NoJITsu Big Picture NoJITsu goal is to deploy fine-grained security policies around critical objects that are used at runtime by the VM.</description>
+    </item>
+    
+    <item>
+      <title>JITGuard: JIT Compiler hardened with Intel SGX</title>
+      <link>https://qducasse.github.io/posts/jitguard/</link>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/jitguard/</guid>
+      <description>Introduction This post presents the article by Frassetto et al. entitled &amp;ldquo;JITGuard Hardening Just-in-time Compilers with SGX&amp;rdquo;. The authors present both an attack against JIT compilers (injecting malicious JIT intermediate representation) and a defense solution. We will focus on the defense part and look at the JITGuard design in details along with its security and performance analysis.
+JITGuard Design JITGuard presents a number of measures to isolate the JIT components from each other and attackers.</description>
+    </item>
+    
+    <item>
+      <title>Cogit runtime trampolines</title>
+      <link>https://qducasse.github.io/posts/trampolines/</link>
+      <pubDate>Mon, 04 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/trampolines/</guid>
+      <description>Cogit trampolines cePICMissTrampoline
+ceCallCogCodePopReceiverAndClassRegs
+ceCallCogCodePopReceiverReg
+ceCannotResumeTrampoline
+ceCaptureCStackPointers
+ceCheckFeaturesFunction
+ceCheckForInterruptTrampoline
+ceEnclosingObjectTrampoline
+ceEnterCogCodePopReceiverReg
+ceFetchContextInstVarTrampoline
+ceFlushICache
+ceFreeTrampoline
+ceGetFP
+ceGetSP
+ceMallocTrampoline
+ceMethodAbortTrampoline
+ceNonLocalReturnTrampoline
+cePICAbortTrampoline
+cePrimReturnEnterCogCode
+cePrimReturnEnterCogCodeProfiling
+ceReapAndResetErrorCodeTrampoline
+ceReturnToInterpreterTrampoline
+ceSendMustBeBooleanAddFalseTrampoline
+ceSendMustBeBooleanAddTrueTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+ceTryLockVMOwner
+ceUnlockVMOwner
+SimpleStackBasedCogit trampolines ceCPICMissTrampoline
+ceCheckForInterruptTrampoline
+ceEnclosingObjectTrampoline
+ceFetchContextInstVarTrampoline
+ceMethodAbortTrampoline
+ceNonLocalReturnTrampoline
+cePICAbortTrampoline
+cePrimReturnEnterCogCode
+cePrimReturnEnterCogCodeProfiling
+ceReapAndResetErrorCodeTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+StackToRegisterMappingCogit trampolines ceEnclosingObjectTrampoline
+ceFetchContextInstVarTrampoline
+ceNonLocalReturnTrampoline
+ceReapAndResetErrorCodeTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+RegisterAllocatingCogit trampolines ceCheckForInterruptTrampoline
+ceSendMustBeBooleanAddFalseTrampoline
+ceSendMustBeBooleanAddTrueTrampoline
+Trampoline generation generateTrampolines 	&amp;#34;Generate the run-time entries and exits at the base of the native code zone and update the base.</description>
+    </item>
+    
+    <item>
+      <title>Debugging Pharo JIT code in gdb</title>
+      <link>https://qducasse.github.io/posts/jit_debug/</link>
+      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/jit_debug/</guid>
+      <description>Investigating VM runtime crashes can be obscure, especially when dealing with code that has been recompiled to machine code by the JIT compiler. This post will show the way to track the execution path within gdb. Note that you will need gdb to be available to debug the VM, it is not possible to do this through a simple qemu image (at least by default) or user-space simulation such as qemu-debootstrap.</description>
+    </item>
+    
+  </channel>
+</rss>

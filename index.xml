@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lectern</title>
+    <link>https://qducasse.github.io/</link>
+    <description>Recent content on Lectern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NoJITsu: Locking Down JavaScript Engines</title>
+      <link>https://qducasse.github.io/posts/nojitsu/</link>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/nojitsu/</guid>
+      <description>Introduction This post presents the article by Park et al. entitled &amp;ldquo;NoJITsu: Locking Down JavaScript Engines&amp;rdquo;. The authors present both an attack against JIT compilers (injecting malicious bytecodes) and a defense solution. We will focus on the defense part and look at the NoJITsu design in details along with its security and performance analysis.
+NoJITsu Big Picture NoJITsu goal is to deploy fine-grained security policies around critical objects that are used at runtime by the VM.</description>
+    </item>
+    
+    <item>
+      <title>JITGuard: JIT Compiler hardened with Intel SGX</title>
+      <link>https://qducasse.github.io/posts/jitguard/</link>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/jitguard/</guid>
+      <description>Introduction This post presents the article by Frassetto et al. entitled &amp;ldquo;JITGuard Hardening Just-in-time Compilers with SGX&amp;rdquo;. The authors present both an attack against JIT compilers (injecting malicious JIT intermediate representation) and a defense solution. We will focus on the defense part and look at the JITGuard design in details along with its security and performance analysis.
+JITGuard Design JITGuard presents a number of measures to isolate the JIT components from each other and attackers.</description>
+    </item>
+    
+    <item>
+      <title>V8 RISC-V setup</title>
+      <link>https://qducasse.github.io/posts/v8_setup/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/v8_setup/</guid>
+      <description>Introduction Let&amp;rsquo;s create a root folder to hold the different elements of our build: the riscv toolchain, qemu and its images and the v8 sources. This folder will be called v8_root for the rest of the guide.
+QEMU installation and setup   QEMU Installation:  Clone the repository and checkout to the version 5.0:
+$ git clone git@github.com:qemu/qemu.git $ cd qemu $ git checkout v5.0.0 Install the prerequisites
+$ sudo apt-get install libglib2.</description>
+    </item>
+    
+    <item>
+      <title>Adding instructions to the RISC-V Rocket core</title>
+      <link>https://qducasse.github.io/posts/rocket_instruction/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/rocket_instruction/</guid>
+      <description>Introduction The RISC-V ISA was born with modularity, extensibility, and open-source in mind. To this end, several processors have their source code available and can be modified to add co-processing units or even new instructions. Our objective here will be to add duplicated instructions in the Rocket core to implement the backbone of a security model presented in RIMI.
+Choosing the opcodes We need to duplicate several instructions:
+ lbu, lhu, lwu and ld for loads sb, sh, sw and sd for stores jal and jalr to add a domain change possibility  The repository riscv-opcodes contains all instruction opcodes:</description>
+    </item>
+    
+    <item>
+      <title>Cogit runtime trampolines</title>
+      <link>https://qducasse.github.io/posts/trampolines/</link>
+      <pubDate>Mon, 04 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/trampolines/</guid>
+      <description>Cogit trampolines cePICMissTrampoline
+ceCallCogCodePopReceiverAndClassRegs
+ceCallCogCodePopReceiverReg
+ceCannotResumeTrampoline
+ceCaptureCStackPointers
+ceCheckFeaturesFunction
+ceCheckForInterruptTrampoline
+ceEnclosingObjectTrampoline
+ceEnterCogCodePopReceiverReg
+ceFetchContextInstVarTrampoline
+ceFlushICache
+ceFreeTrampoline
+ceGetFP
+ceGetSP
+ceMallocTrampoline
+ceMethodAbortTrampoline
+ceNonLocalReturnTrampoline
+cePICAbortTrampoline
+cePrimReturnEnterCogCode
+cePrimReturnEnterCogCodeProfiling
+ceReapAndResetErrorCodeTrampoline
+ceReturnToInterpreterTrampoline
+ceSendMustBeBooleanAddFalseTrampoline
+ceSendMustBeBooleanAddTrueTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+ceTryLockVMOwner
+ceUnlockVMOwner
+SimpleStackBasedCogit trampolines ceCPICMissTrampoline
+ceCheckForInterruptTrampoline
+ceEnclosingObjectTrampoline
+ceFetchContextInstVarTrampoline
+ceMethodAbortTrampoline
+ceNonLocalReturnTrampoline
+cePICAbortTrampoline
+cePrimReturnEnterCogCode
+cePrimReturnEnterCogCodeProfiling
+ceReapAndResetErrorCodeTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+StackToRegisterMappingCogit trampolines ceEnclosingObjectTrampoline
+ceFetchContextInstVarTrampoline
+ceNonLocalReturnTrampoline
+ceReapAndResetErrorCodeTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+RegisterAllocatingCogit trampolines ceCheckForInterruptTrampoline
+ceSendMustBeBooleanAddFalseTrampoline
+ceSendMustBeBooleanAddTrueTrampoline
+Trampoline generation generateTrampolines 	&amp;#34;Generate the run-time entries and exits at the base of the native code zone and update the base.</description>
+    </item>
+    
+    <item>
+      <title>RISC-V toolchain with custom glibc</title>
+      <link>https://qducasse.github.io/posts/riscv_toolchain/</link>
+      <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/riscv_toolchain/</guid>
+      <description>Linking against your own glibc The glibc is what defines the base C libraries needed by a program.
+# Quentin Ducasse, March 2022 # taken from Claas Heuer, August 2015, https://gist.github.com/cheuerde/7229f304856e59ce183a # # urls: # http://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host # http://www.gnu.org/software/libc/download.html  # Arguments handling if [ &amp;#34;$#&amp;#34; -ne 1 ]; then  echo &amp;#34;Usage: $0&amp;lt;glibc_version&amp;gt;&amp;#34; &amp;gt;&amp;amp;2  exit 1 fi libc_version=$1  # create a temp folder to build glibc cd $HOME mkdir glibc_update cd glibc_update  # get glibc version wget https://ftp.</description>
+    </item>
+    
+    <item>
+      <title>Debugging Pharo JIT code in gdb</title>
+      <link>https://qducasse.github.io/posts/jit_debug/</link>
+      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/jit_debug/</guid>
+      <description>Investigating VM runtime crashes can be obscure, especially when dealing with code that has been recompiled to machine code by the JIT compiler. This post will show the way to track the execution path within gdb. Note that you will need gdb to be available to debug the VM, it is not possible to do this through a simple qemu image (at least by default) or user-space simulation such as qemu-debootstrap.</description>
+    </item>
+    
+    <item>
+      <title>RISC-V load immediate pseudo-instruction</title>
+      <link>https://qducasse.github.io/posts/rv_immediate/</link>
+      <pubDate>Mon, 21 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/rv_immediate/</guid>
+      <description>RISC-V Load Immediate li Pseudo-Instruction The pseudo-instruction li breaks down to a complex algorithm depending on the variables. Before presenting the algorithm, some terms have to be defined.
+Terms and Concepts Numbers and Sign First, an unsigned number has its raw value in binary and cannot be negative. There is no guess on how to read the value, each bit will only represent a power of two.
+ 1 0 1 1 2^3 2^2 2^1 2^0 8 + 0 + 2 + 1 = 11 Next, a signed integer will have its most significant bit set to a sign bit.</description>
+    </item>
+    
+  </channel>
+</rss>

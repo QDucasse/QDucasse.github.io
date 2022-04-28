@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pharo on Lectern</title>
+    <link>https://qducasse.github.io/tags/pharo/</link>
+    <description>Recent content in pharo on Lectern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/pharo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cogit runtime trampolines</title>
+      <link>https://qducasse.github.io/posts/trampolines/</link>
+      <pubDate>Mon, 04 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/trampolines/</guid>
+      <description>Cogit trampolines cePICMissTrampoline
+ceCallCogCodePopReceiverAndClassRegs
+ceCallCogCodePopReceiverReg
+ceCannotResumeTrampoline
+ceCaptureCStackPointers
+ceCheckFeaturesFunction
+ceCheckForInterruptTrampoline
+ceEnclosingObjectTrampoline
+ceEnterCogCodePopReceiverReg
+ceFetchContextInstVarTrampoline
+ceFlushICache
+ceFreeTrampoline
+ceGetFP
+ceGetSP
+ceMallocTrampoline
+ceMethodAbortTrampoline
+ceNonLocalReturnTrampoline
+cePICAbortTrampoline
+cePrimReturnEnterCogCode
+cePrimReturnEnterCogCodeProfiling
+ceReapAndResetErrorCodeTrampoline
+ceReturnToInterpreterTrampoline
+ceSendMustBeBooleanAddFalseTrampoline
+ceSendMustBeBooleanAddTrueTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+ceTryLockVMOwner
+ceUnlockVMOwner
+SimpleStackBasedCogit trampolines ceCPICMissTrampoline
+ceCheckForInterruptTrampoline
+ceEnclosingObjectTrampoline
+ceFetchContextInstVarTrampoline
+ceMethodAbortTrampoline
+ceNonLocalReturnTrampoline
+cePICAbortTrampoline
+cePrimReturnEnterCogCode
+cePrimReturnEnterCogCodeProfiling
+ceReapAndResetErrorCodeTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+StackToRegisterMappingCogit trampolines ceEnclosingObjectTrampoline
+ceFetchContextInstVarTrampoline
+ceNonLocalReturnTrampoline
+ceReapAndResetErrorCodeTrampoline
+ceStoreContextInstVarTrampoline
+ceTraceBlockActivationTrampoline
+ceTraceLinkedSendTrampoline
+ceTraceStoreTrampoline
+RegisterAllocatingCogit trampolines ceCheckForInterruptTrampoline
+ceSendMustBeBooleanAddFalseTrampoline
+ceSendMustBeBooleanAddTrueTrampoline
+Trampoline generation generateTrampolines 	&amp;#34;Generate the run-time entries and exits at the base of the native code zone and update the base.</description>
+    </item>
+    
+    <item>
+      <title>Debugging Pharo JIT code in gdb</title>
+      <link>https://qducasse.github.io/posts/jit_debug/</link>
+      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/jit_debug/</guid>
+      <description>Investigating VM runtime crashes can be obscure, especially when dealing with code that has been recompiled to machine code by the JIT compiler. This post will show the way to track the execution path within gdb. Note that you will need gdb to be available to debug the VM, it is not possible to do this through a simple qemu image (at least by default) or user-space simulation such as qemu-debootstrap.</description>
+    </item>
+    
+  </channel>
+</rss>

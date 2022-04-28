@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Lectern</title>
+    <link>https://qducasse.github.io/tags/</link>
+    <description>Recent content in Tags on Lectern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hardware</title>
+      <link>https://qducasse.github.io/tags/hardware/</link>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/hardware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jit</title>
+      <link>https://qducasse.github.io/tags/jit/</link>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/jit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protection keys</title>
+      <link>https://qducasse.github.io/tags/protection-keys/</link>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/protection-keys/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>enclave</title>
+      <link>https://qducasse.github.io/tags/enclave/</link>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/enclave/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>riscv</title>
+      <link>https://qducasse.github.io/tags/riscv/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/riscv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>v8</title>
+      <link>https://qducasse.github.io/tags/v8/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/v8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rocket</title>
+      <link>https://qducasse.github.io/tags/rocket/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/rocket/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pharo</title>
+      <link>https://qducasse.github.io/tags/pharo/</link>
+      <pubDate>Mon, 04 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/pharo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trampoline</title>
+      <link>https://qducasse.github.io/tags/trampoline/</link>
+      <pubDate>Mon, 04 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/trampoline/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>glibc</title>
+      <link>https://qducasse.github.io/tags/glibc/</link>
+      <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/glibc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gdb</title>
+      <link>https://qducasse.github.io/tags/gdb/</link>
+      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/gdb/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

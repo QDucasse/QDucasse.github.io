@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>riscv on Lectern</title>
+    <link>https://qducasse.github.io/tags/riscv/</link>
+    <description>Recent content in riscv on Lectern</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 24 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/riscv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>V8 RISC-V setup</title>
+      <link>https://qducasse.github.io/posts/v8_setup/</link>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/v8_setup/</guid>
+      <description>Introduction Let&amp;rsquo;s create a root folder to hold the different elements of our build: the riscv toolchain, qemu and its images and the v8 sources. This folder will be called v8_root for the rest of the guide.
+QEMU installation and setup   QEMU Installation:  Clone the repository and checkout to the version 5.0:
+$ git clone git@github.com:qemu/qemu.git $ cd qemu $ git checkout v5.0.0 Install the prerequisites
+$ sudo apt-get install libglib2.</description>
+    </item>
+    
+    <item>
+      <title>Adding instructions to the RISC-V Rocket core</title>
+      <link>https://qducasse.github.io/posts/rocket_instruction/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/rocket_instruction/</guid>
+      <description>Introduction The RISC-V ISA was born with modularity, extensibility, and open-source in mind. To this end, several processors have their source code available and can be modified to add co-processing units or even new instructions. Our objective here will be to add duplicated instructions in the Rocket core to implement the backbone of a security model presented in RIMI.
+Choosing the opcodes We need to duplicate several instructions:
+ lbu, lhu, lwu and ld for loads sb, sh, sw and sd for stores jal and jalr to add a domain change possibility  The repository riscv-opcodes contains all instruction opcodes:</description>
+    </item>
+    
+    <item>
+      <title>RISC-V toolchain with custom glibc</title>
+      <link>https://qducasse.github.io/posts/riscv_toolchain/</link>
+      <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/riscv_toolchain/</guid>
+      <description>Linking against your own glibc The glibc is what defines the base C libraries needed by a program.
+# Quentin Ducasse, March 2022 # taken from Claas Heuer, August 2015, https://gist.github.com/cheuerde/7229f304856e59ce183a # # urls: # http://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host # http://www.gnu.org/software/libc/download.html  # Arguments handling if [ &amp;#34;$#&amp;#34; -ne 1 ]; then  echo &amp;#34;Usage: $0&amp;lt;glibc_version&amp;gt;&amp;#34; &amp;gt;&amp;amp;2  exit 1 fi libc_version=$1  # create a temp folder to build glibc cd $HOME mkdir glibc_update cd glibc_update  # get glibc version wget https://ftp.</description>
+    </item>
+    
+    <item>
+      <title>RISC-V load immediate pseudo-instruction</title>
+      <link>https://qducasse.github.io/posts/rv_immediate/</link>
+      <pubDate>Mon, 21 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/rv_immediate/</guid>
+      <description>RISC-V Load Immediate li Pseudo-Instruction The pseudo-instruction li breaks down to a complex algorithm depending on the variables. Before presenting the algorithm, some terms have to be defined.
+Terms and Concepts Numbers and Sign First, an unsigned number has its raw value in binary and cannot be negative. There is no guess on how to read the value, each bit will only represent a power of two.
+ 1 0 1 1 2^3 2^2 2^1 2^0 8 + 0 + 2 + 1 = 11 Next, a signed integer will have its most significant bit set to a sign bit.</description>
+    </item>
+    
+  </channel>
+</rss>
