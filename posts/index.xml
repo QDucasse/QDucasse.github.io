@@ -155,28 +155,5 @@ Terms and Concepts Numbers and Sign First, an unsigned number has its raw value 
  1 0 1 1 2^3 2^2 2^1 2^0 8 + 0 + 2 + 1 = 11 Next, a signed integer will have its most significant bit set to a sign bit.</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://qducasse.github.io/posts/vm_simulation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://qducasse.github.io/posts/vm_simulation/</guid>
-      <description>Generation:
-PharoVMMaker generate: CoInterpreter name 	outputDirectory: &amp;#39;/home/quentin/Desktop/GitProjects/vm/pharovm/opensmalltalk-vm&amp;#39; Simulation:
-InterpreterStackPages initialize. options := {  #ObjectMemory -&amp;gt; #Spur64BitCoMemoryManager.  #ISA -&amp;gt; #riscv64.  #BytesPerWord -&amp;gt; 8 } asDictionary.  c := CogVMSimulator newWithOptions: options. c openOn: &amp;#39;/home/quentin/Desktop/GitProjects/vm/pharovm/simulation/Pharo.image&amp;#39; extraMemory: 100000. c run. Benchmarks:
-$[rv64si] ./pharo ../getpharo/Pharo.image eval 2 tinyBenchmarks 5468215 bytecodes/sec; 253626 sends/sec  $[rv64cog] ./pharo ../getpharo/Pharo.image eval 2 tinyBenchmarks 217687074 bytecodes/sec; 13315244 sends/sec $[rv64cog] ./pharo ../getpharo/Pharo.image eval Smalltalk os subtype libffi:</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://qducasse.github.io/posts/yako/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://qducasse.github.io/posts/yako/</guid>
-      <description>FFMPEG filters asoftclip
-bass, lowshelf
-treble, highshelf</description>
-    </item>
-    
   </channel>
 </rss>
