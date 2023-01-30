@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Lectern</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>riscv</title>
+      <link>https://qducasse.github.io/tags/riscv/</link>
+      <pubDate>Fri, 27 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/riscv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rocket</title>
+      <link>https://qducasse.github.io/tags/rocket/</link>
+      <pubDate>Fri, 27 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/tags/rocket/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>hardware</title>
       <link>https://qducasse.github.io/tags/hardware/</link>
@@ -44,29 +62,11 @@
     </item>
     
     <item>
-      <title>riscv</title>
-      <link>https://qducasse.github.io/tags/riscv/</link>
-      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://qducasse.github.io/tags/riscv/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>v8</title>
       <link>https://qducasse.github.io/tags/v8/</link>
       <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://qducasse.github.io/tags/v8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rocket</title>
-      <link>https://qducasse.github.io/tags/rocket/</link>
-      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://qducasse.github.io/tags/rocket/</guid>
       <description></description>
     </item>
     

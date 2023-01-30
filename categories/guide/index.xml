@@ -6,7 +6,18 @@
     <description>Recent content in Guide on Lectern</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 24 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/categories/guide/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/categories/guide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rocket chip building</title>
+      <link>https://qducasse.github.io/posts/rocket/</link>
+      <pubDate>Fri, 27 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/rocket/</guid>
+      <description>Installation and simulation of the Rocket processor Rocket is a fully-featured RISC-V processor capable of running Linux. Here, we will install the core and its toolchain.
+Setup Since we will need two different repositories, let&amp;rsquo;s setup a root directory rocket-root and clone both of the projects:
+$ mkdir rocket-root &amp;amp;&amp;amp; cd rocket-root $ git clone git@github.com:chipsalliance/rocket-chip.git $ git clone git@github.com:chipsalliance/rocket-tools.git $ export ROCKET_ROOT=&amp;#34;$HOME/path/to/rocket-root&amp;#34; The known checkout hash for the rocket-tools repository is noted in the file riscv-tools.</description>
+    </item>
+    
     <item>
       <title>V8 RISC-V setup</title>
       <link>https://qducasse.github.io/posts/v8_setup/</link>

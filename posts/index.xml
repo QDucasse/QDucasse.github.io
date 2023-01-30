@@ -6,7 +6,18 @@
     <description>Recent content in Posts on Lectern</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rocket chip building</title>
+      <link>https://qducasse.github.io/posts/rocket/</link>
+      <pubDate>Fri, 27 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/rocket/</guid>
+      <description>Installation and simulation of the Rocket processor Rocket is a fully-featured RISC-V processor capable of running Linux. Here, we will install the core and its toolchain.
+Setup Since we will need two different repositories, let&amp;rsquo;s setup a root directory rocket-root and clone both of the projects:
+$ mkdir rocket-root &amp;amp;&amp;amp; cd rocket-root $ git clone git@github.com:chipsalliance/rocket-chip.git $ git clone git@github.com:chipsalliance/rocket-tools.git $ export ROCKET_ROOT=&amp;#34;$HOME/path/to/rocket-root&amp;#34; The known checkout hash for the rocket-tools repository is noted in the file riscv-tools.</description>
+    </item>
+    
     <item>
       <title>NoJITsu: Locking Down JavaScript Engines</title>
       <link>https://qducasse.github.io/posts/nojitsu/</link>
@@ -142,6 +153,29 @@ Trampoline generation generateTrampolines 	&amp;#34;Generate the run-time entrie
       <description>RISC-V Load Immediate li Pseudo-Instruction The pseudo-instruction li breaks down to a complex algorithm depending on the variables. Before presenting the algorithm, some terms have to be defined.
 Terms and Concepts Numbers and Sign First, an unsigned number has its raw value in binary and cannot be negative. There is no guess on how to read the value, each bit will only represent a power of two.
  1 0 1 1 2^3 2^2 2^1 2^0 8 + 0 + 2 + 1 = 11 Next, a signed integer will have its most significant bit set to a sign bit.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://qducasse.github.io/posts/vm_simulation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/vm_simulation/</guid>
+      <description>Generation:
+PharoVMMaker generate: CoInterpreter name 	outputDirectory: &amp;#39;/home/quentin/Desktop/GitProjects/vm/pharovm/opensmalltalk-vm&amp;#39; Simulation:
+InterpreterStackPages initialize. options := {  #ObjectMemory -&amp;gt; #Spur64BitCoMemoryManager.  #ISA -&amp;gt; #riscv64.  #BytesPerWord -&amp;gt; 8 } asDictionary.  c := CogVMSimulator newWithOptions: options. c openOn: &amp;#39;/home/quentin/Desktop/GitProjects/vm/pharovm/simulation/Pharo.image&amp;#39; extraMemory: 100000. c run. Benchmarks:
+$[rv64si] ./pharo ../getpharo/Pharo.image eval 2 tinyBenchmarks 5468215 bytecodes/sec; 253626 sends/sec  $[rv64cog] ./pharo ../getpharo/Pharo.image eval 2 tinyBenchmarks 217687074 bytecodes/sec; 13315244 sends/sec $[rv64cog] ./pharo ../getpharo/Pharo.image eval Smalltalk os subtype libffi:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://qducasse.github.io/posts/yako/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/yako/</guid>
+      <description>FFMPEG filters asoftclip
+bass, lowshelf
+treble, highshelf</description>
     </item>
     
   </channel>
