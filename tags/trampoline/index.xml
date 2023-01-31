@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 04 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/trampoline/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cogit runtime trampolines</title>
-      <link>https://qducasse.github.io/posts/trampolines/</link>
+      <link>https://qducasse.github.io/posts/2022-04-04-trampolines/</link>
       <pubDate>Mon, 04 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/trampolines/</guid>
+      <guid>https://qducasse.github.io/posts/2022-04-04-trampolines/</guid>
       <description>Cogit trampolines cePICMissTrampoline
 ceCallCogCodePopReceiverAndClassRegs
 ceCallCogCodePopReceiverReg

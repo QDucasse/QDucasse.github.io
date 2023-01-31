@@ -20,7 +20,7 @@
     <loc>https://qducasse.github.io/tags/rocket/</loc>
     <lastmod>2023-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/rocket/</loc>
+    <loc>https://qducasse.github.io/posts/2023-01-27-rocket/</loc>
     <lastmod>2023-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/</loc>
@@ -35,7 +35,7 @@
     <loc>https://qducasse.github.io/tags/jit/</loc>
     <lastmod>2022-04-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/nojitsu/</loc>
+    <loc>https://qducasse.github.io/posts/2022-04-28-nojitsu/</loc>
     <lastmod>2022-04-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/protection-keys/</loc>
@@ -44,22 +44,22 @@
     <loc>https://qducasse.github.io/tags/enclave/</loc>
     <lastmod>2022-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/jitguard/</loc>
+    <loc>https://qducasse.github.io/posts/2022-04-26-jitguard/</loc>
     <lastmod>2022-04-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/v8/</loc>
     <lastmod>2022-04-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/v8_setup/</loc>
+    <loc>https://qducasse.github.io/posts/2022-04-24-v8_setup/</loc>
     <lastmod>2022-04-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/rocket_instruction/</loc>
+    <loc>https://qducasse.github.io/posts/2022-04-12-rocket_instruction/</loc>
     <lastmod>2022-04-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/categories/exploration/</loc>
     <lastmod>2022-04-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/trampolines/</loc>
+    <loc>https://qducasse.github.io/posts/2022-04-04-trampolines/</loc>
     <lastmod>2022-04-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/pharo/</loc>
@@ -71,16 +71,16 @@
     <loc>https://qducasse.github.io/tags/glibc/</loc>
     <lastmod>2022-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/riscv_toolchain/</loc>
+    <loc>https://qducasse.github.io/posts/2022-03-23-riscv_toolchain/</loc>
     <lastmod>2022-03-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/jit_debug/</loc>
+    <loc>https://qducasse.github.io/posts/2022-03-10-jit_debug/</loc>
     <lastmod>2022-03-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/gdb/</loc>
     <lastmod>2022-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/rv_immediate/</loc>
+    <loc>https://qducasse.github.io/posts/2022-02-21-rv_immediate/</loc>
     <lastmod>2022-02-21T00:00:00+00:00</lastmod>
   </url>
 </urlset>

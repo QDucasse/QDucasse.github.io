@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 23 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/glibc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RISC-V toolchain with custom glibc</title>
-      <link>https://qducasse.github.io/posts/riscv_toolchain/</link>
+      <link>https://qducasse.github.io/posts/2022-03-23-riscv_toolchain/</link>
       <pubDate>Wed, 23 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/riscv_toolchain/</guid>
+      <guid>https://qducasse.github.io/posts/2022-03-23-riscv_toolchain/</guid>
       <description>Linking against your own glibc The glibc is what defines the base C libraries needed by a program.
 # Quentin Ducasse, March 2022 # taken from Claas Heuer, August 2015, https://gist.github.com/cheuerde/7229f304856e59ce183a # # urls: # http://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host # http://www.gnu.org/software/libc/download.html  # Arguments handling if [ &amp;#34;$#&amp;#34; -ne 1 ]; then  echo &amp;#34;Usage: $0&amp;lt;glibc_version&amp;gt;&amp;#34; &amp;gt;&amp;amp;2  exit 1 fi libc_version=$1  # create a temp folder to build glibc cd $HOME mkdir glibc_update cd glibc_update  # get glibc version wget https://ftp.</description>
     </item>

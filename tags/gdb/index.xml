@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 10 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/gdb/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Debugging Pharo JIT code in gdb</title>
-      <link>https://qducasse.github.io/posts/jit_debug/</link>
+      <link>https://qducasse.github.io/posts/2022-03-10-jit_debug/</link>
       <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/jit_debug/</guid>
+      <guid>https://qducasse.github.io/posts/2022-03-10-jit_debug/</guid>
       <description>Investigating VM runtime crashes can be obscure, especially when dealing with code that has been recompiled to machine code by the JIT compiler. This post will show the way to track the execution path within gdb. Note that you will need gdb to be available to debug the VM, it is not possible to do this through a simple qemu image (at least by default) or user-space simulation such as qemu-debootstrap.</description>
     </item>
     

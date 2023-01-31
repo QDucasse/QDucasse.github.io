@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 26 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/enclave/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JITGuard: JIT Compiler hardened with Intel SGX</title>
-      <link>https://qducasse.github.io/posts/jitguard/</link>
+      <link>https://qducasse.github.io/posts/2022-04-26-jitguard/</link>
       <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/jitguard/</guid>
+      <guid>https://qducasse.github.io/posts/2022-04-26-jitguard/</guid>
       <description>Introduction This post presents the article by Frassetto et al. entitled &amp;ldquo;JITGuard Hardening Just-in-time Compilers with SGX&amp;rdquo;. The authors present both an attack against JIT compilers (injecting malicious JIT intermediate representation) and a defense solution. We will focus on the defense part and look at the JITGuard design in details along with its security and performance analysis.
 JITGuard Design JITGuard presents a number of measures to isolate the JIT components from each other and attackers.</description>
     </item>

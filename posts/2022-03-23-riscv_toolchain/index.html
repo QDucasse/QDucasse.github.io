@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Quentin Ducasse" />
-  <meta property="og:url" content="https://qducasse.github.io/tags/riscv/" />
-  <link rel="canonical" href="https://qducasse.github.io/tags/riscv/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
+  <meta property="og:url" content="https://qducasse.github.io/posts/2022-03-23-riscv_toolchain/" />
+  <link rel="canonical" href="https://qducasse.github.io/posts/2022-03-23-riscv_toolchain/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
 
   <script type="application/ld+json">
   {
@@ -18,28 +18,30 @@
            "@type": "WebPage",
            "@id": "https:\/\/qducasse.github.io"
       },
-      "articleSection" : "tags",
-      "name" : "riscv",
-      "headline" : "riscv",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "RISC-V toolchain with custom glibc",
+      "headline" : "RISC-V toolchain with custom glibc",
+      "description" : "Linking against your own glibc The glibc is what defines the base C libraries needed by a program.\n# Quentin Ducasse, March 2022 # taken from Claas Heuer, August 2015, https:\/\/gist.github.com\/cheuerde\/7229f304856e59ce183a # # urls: # http:\/\/stackoverflow.com\/questions\/847179\/multiple-glibc-libraries-on-a-single-host # http:\/\/www.gnu.org\/software\/libc\/download.html  # Arguments handling if [ \u0026#34;$#\u0026#34; -ne 1 ]; then  echo \u0026#34;Usage: $0\u0026lt;glibc_version\u0026gt;\u0026#34; \u0026gt;\u0026amp;2  exit 1 fi libc_version=$1  # create a temp folder to build glibc cd $HOME mkdir glibc_update cd glibc_update  # get glibc version wget https:\/\/ftp.",
       "inLanguage" : "en-US",
       "author" : "Quentin Ducasse",
       "creator" : "Quentin Ducasse",
       "publisher": "Quentin Ducasse",
       "accountablePerson" : "Quentin Ducasse",
       "copyrightHolder" : "Quentin Ducasse",
-      "copyrightYear" : "2023",
-      "datePublished": "2023-01-27 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2023-01-27 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/qducasse.github.io\/tags\/riscv\/",
-      "keywords" : [  ]
+      "copyrightYear" : "2022",
+      "datePublished": "2022-03-23 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2022-03-23 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/qducasse.github.io\/posts\/2022-03-23-riscv_toolchain\/",
+      "keywords" : [ "riscv","glibc", ]
   }
 </script>
-<title>riscv</title>
-  <meta property="og:title" content="riscv" />
+<title>RISC-V toolchain with custom glibc</title>
+  <meta property="og:title" content="RISC-V toolchain with custom glibc" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Linking against your own glibc The glibc is what defines the base C libraries needed by a program.
+# Quentin Ducasse, March 2022 # taken from Claas Heuer, August 2015, https://gist.github.com/cheuerde/7229f304856e59ce183a # # urls: # http://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host # http://www.gnu.org/software/libc/download.html  # Arguments handling if [ &amp;#34;$#&amp;#34; -ne 1 ]; then  echo &amp;#34;Usage: $0&amp;lt;glibc_version&amp;gt;&amp;#34; &amp;gt;&amp;amp;2  exit 1 fi libc_version=$1  # create a temp folder to build glibc cd $HOME mkdir glibc_update cd glibc_update  # get glibc version wget https://ftp." />
+  <meta name="description" content="Linking against your own glibc The glibc is what defines the base C libraries needed by a program.
+# Quentin Ducasse, March 2022 # taken from Claas Heuer, August 2015, https://gist.github.com/cheuerde/7229f304856e59ce183a # # urls: # http://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host # http://www.gnu.org/software/libc/download.html  # Arguments handling if [ &amp;#34;$#&amp;#34; -ne 1 ]; then  echo &amp;#34;Usage: $0&amp;lt;glibc_version&amp;gt;&amp;#34; &amp;gt;&amp;amp;2  exit 1 fi libc_version=$1  # create a temp folder to build glibc cd $HOME mkdir glibc_update cd glibc_update  # get glibc version wget https://ftp." />
   <meta property="og:locale" content="en" /><meta property="og:image" content="" />
   
 
@@ -66,10 +68,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -94,86 +97,143 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term">riscv</h1>
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-01-27 00:00:00 UTC">Jan 27</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2023-01-27-rocket/">Rocket chip building</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          <section>
-            <h1 class="site-date-catalog">2022</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-04-24 00:00:00 UTC">Apr 24</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-04-24-v8_setup/">V8 RISC-V setup</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-04-12 00:00:00 UTC">Apr 12</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-04-12-rocket_instruction/">Adding instructions to the RISC-V Rocket core</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-03-23 00:00:00 UTC">Mar 23</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-03-23-riscv_toolchain/">RISC-V toolchain with custom glibc</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-02-21 00:00:00 UTC">Feb 21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-02-21-rv_immediate/">RISC-V load immediate pseudo-instruction</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">RISC-V toolchain with custom glibc</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2022-03-23 00:00:00 UTC">
+                23 Mar 2022
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="">@Quentin Ducasse</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="linking-against-your-own-glibc">Linking against your own <code>glibc</code></h2>
+<p>The <code>glibc</code> is what defines the base C libraries needed by a program.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Quentin Ducasse, March 2022</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   taken from Claas Heuer, August 2015, https://gist.github.com/cheuerde/7229f304856e59ce183a</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># urls:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># http://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># http://www.gnu.org/software/libc/download.html</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Arguments handling</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$#<span style="color:#e6db74">&#34;</span> -ne <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;Usage: </span>$0<span style="color:#e6db74"> &lt;glibc_version&gt;&#34;</span> &gt;&amp;<span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>libc_version<span style="color:#f92672">=</span>$1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># create a temp folder to build glibc</span>
+</span></span><span style="display:flex;"><span>cd $HOME
+</span></span><span style="display:flex;"><span>mkdir glibc_update
+</span></span><span style="display:flex;"><span>cd glibc_update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># get glibc version</span>
+</span></span><span style="display:flex;"><span>wget https://ftp.gnu.org/gnu/glibc/glibc-<span style="color:#e6db74">${</span>libc_version<span style="color:#e6db74">}</span>.tar.gz
+</span></span><span style="display:flex;"><span>tar -xf glibc-<span style="color:#e6db74">${</span>libc_version<span style="color:#e6db74">}</span>.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># configure and set the installation path</span>
+</span></span><span style="display:flex;"><span>cd glibc-<span style="color:#e6db74">${</span>libc_version<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>mkdir build
+</span></span><span style="display:flex;"><span>cd build
+</span></span><span style="display:flex;"><span>../configure --prefix<span style="color:#f92672">=</span>/opt/glibc-<span style="color:#e6db74">${</span>libc_version<span style="color:#e6db74">}</span> --enable-cet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># compile</span>
+</span></span><span style="display:flex;"><span>make -j6
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></div><p>You can then link with this version with flags:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ export GLIBC_VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2.30&#34;</span>
+</span></span><span style="display:flex;"><span>$ gcc main.o -o myapp ... <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	-Wl,--rpath<span style="color:#f92672">=</span>/opt/glibc-<span style="color:#e6db74">${</span>GLIBC_VERSION<span style="color:#e6db74">}</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	-Wl,--dynamic-linker<span style="color:#f92672">=</span>/opt/glibc-<span style="color:#e6db74">${</span>GLIBC_VERSION<span style="color:#e6db74">}</span>/lib/ld-<span style="color:#e6db74">${</span>GLIBC_VERSION<span style="color:#e6db74">}</span>.so
+</span></span></code></pre></div><h2 id="cross-compiling">Cross-compiling</h2>
+<p>Before any action on the toolchain, check which version of <code>glibc</code> you will need on the target architecture. This is available through <code>ldd --version</code>.</p>
+<p>In my case, working on RISC-V, I will look at <strong>(1)</strong> the <strong>QEMU image</strong> (<code>Fedora-Rawhide-Minimal-20200108.n.0</code>) <strong>(2) Actual hardware</strong> (Beagle-V with <code>Fedora-riscv64-jh7100-developer-xfce-Rawhide-20211226-214100.n.0</code>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ldd --version <span style="color:#75715e"># qemu</span>
+</span></span><span style="display:flex;"><span>	ldd <span style="color:#f92672">(</span>GNU libc<span style="color:#f92672">)</span> 2.30.9000
+</span></span><span style="display:flex;"><span>	Copyright <span style="color:#f92672">(</span>C<span style="color:#f92672">)</span> <span style="color:#ae81ff">2020</span> Free Software Foundation, Inc.
+</span></span><span style="display:flex;"><span>	This is free software; see the source <span style="color:#66d9ef">for</span> copying conditions.  There is NO
+</span></span><span style="display:flex;"><span>	warranty; not even <span style="color:#66d9ef">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</span></span><span style="display:flex;"><span>	Written by Roland McGrath and Ulrich Drepper.
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ldd --version <span style="color:#75715e"># beagle-v</span>
+</span></span><span style="display:flex;"><span>	ldd <span style="color:#f92672">(</span>GNU libc<span style="color:#f92672">)</span> 2.32
+</span></span><span style="display:flex;"><span>	Copyright <span style="color:#f92672">(</span>C<span style="color:#f92672">)</span> <span style="color:#ae81ff">2020</span> Free Software Foundation, Inc.
+</span></span><span style="display:flex;"><span>	This is free software; see the source <span style="color:#66d9ef">for</span> copying conditions.  There is NO
+</span></span><span style="display:flex;"><span>	warranty; not even <span style="color:#66d9ef">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</span></span><span style="display:flex;"><span>	Written by Roland McGrath and Ulrich Drepper.
+</span></span></code></pre></div><p>Now that we have these information, we need to compile the toolchain using the correct <code>glibc</code> version. We will go with <code>glibc-2.30.9000</code> here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://github.com/riscv/riscv-gnu-toolchain
+</span></span><span style="display:flex;"><span>$ cd riscv-gnu-toolchain
+</span></span><span style="display:flex;"><span>$ git submodule update --init --recursive
+</span></span></code></pre></div><p>We need to change the <code>glibc</code> version:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd riscv-glibc
+</span></span><span style="display:flex;"><span>$ git checkout glibc-2.30.9000
+</span></span></code></pre></div><p>Now compile the toolchain as usual:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./configure --prefix<span style="color:#f92672">=</span>/opt/riscv-glibc-2.30.9000
+</span></span><span style="display:flex;"><span>$ sudo make linux
+</span></span></code></pre></div><blockquote>
+<p><em>Note: The option <code>--enable-multilib</code> that allows cross-compiler support for <strong>both</strong> 32-bit and 64-bit is not available as <code>glibc-2.30</code> does not support rv32 yet</em></p>
+</blockquote>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/riscv/">
+                riscv
+              </a>
+            </div>
+            
+            <div class="post-tags">
+              <a href="/tags/glibc/">
+                glibc
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2022-02-21-rv_immediate/">RISC-V load immediate pseudo-instruction</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -193,6 +253,8 @@
     
   
 </script>
+
+  
 
 </body>
 

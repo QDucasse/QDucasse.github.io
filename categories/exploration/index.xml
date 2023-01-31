@@ -9,10 +9,10 @@
     <lastBuildDate>Tue, 12 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/categories/exploration/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Adding instructions to the RISC-V Rocket core</title>
-      <link>https://qducasse.github.io/posts/rocket_instruction/</link>
+      <link>https://qducasse.github.io/posts/2022-04-12-rocket_instruction/</link>
       <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/rocket_instruction/</guid>
+      <guid>https://qducasse.github.io/posts/2022-04-12-rocket_instruction/</guid>
       <description>Introduction The RISC-V ISA was born with modularity, extensibility, and open-source in mind. To this end, several processors have their source code available and can be modified to add co-processing units or even new instructions. Our objective here will be to add duplicated instructions in the Rocket core to implement the backbone of a security model presented in RIMI.
 Choosing the opcodes We need to duplicate several instructions:
  lbu, lhu, lwu and ld for loads sb, sh, sw and sd for stores jal and jalr to add a domain change possibility  The repository riscv-opcodes contains all instruction opcodes:</description>
@@ -20,10 +20,10 @@ Choosing the opcodes We need to duplicate several instructions:
     
     <item>
       <title>Cogit runtime trampolines</title>
-      <link>https://qducasse.github.io/posts/trampolines/</link>
+      <link>https://qducasse.github.io/posts/2022-04-04-trampolines/</link>
       <pubDate>Mon, 04 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/trampolines/</guid>
+      <guid>https://qducasse.github.io/posts/2022-04-04-trampolines/</guid>
       <description>Cogit trampolines cePICMissTrampoline
 ceCallCogCodePopReceiverAndClassRegs
 ceCallCogCodePopReceiverReg
