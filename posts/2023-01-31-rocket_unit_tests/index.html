@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Quentin Ducasse" />
-  <meta property="og:url" content="https://qducasse.github.io/tags/" />
-  <link rel="canonical" href="https://qducasse.github.io/tags/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
+  <meta property="og:url" content="https://qducasse.github.io/posts/2023-01-31-rocket_unit_tests/" />
+  <link rel="canonical" href="https://qducasse.github.io/posts/2023-01-31-rocket_unit_tests/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
 
   <script type="application/ld+json">
   {
@@ -18,10 +18,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/qducasse.github.io"
       },
-      "articleSection" : "tags",
-      "name" : "Tags",
-      "headline" : "Tags",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "Rocket unit tests",
+      "headline" : "Rocket unit tests",
+      "description" : "Unit tests overview As we have seen in a previous post, we can launch the unit test suite through the C emulator using:\n$ cd $ROCKET_ROOT\/rocket-chip\/emulator $ make -jN run-asm-tests $ make -jN run-bmark-tests $ make -jN run-asm-tests-debug # With waveforms It is also possible to launch individual tests:\n$ make output\/rv64ui-p-add.out # Emulation $ make output\/rv64ui-p-add.vcd # Waveforms Each run produces the Verilog code of the chip (through Chisel):",
       "inLanguage" : "en-US",
       "author" : "Quentin Ducasse",
       "creator" : "Quentin Ducasse",
@@ -31,15 +31,19 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-02-02 00:00:00 \u002b0000 UTC",
       "dateModified" : "2023-02-02 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/qducasse.github.io\/tags\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/qducasse.github.io\/posts\/2023-01-31-rocket_unit_tests\/",
+      "keywords" : [ "riscv","rocket", ]
   }
 </script>
-<title>Tags</title>
-  <meta property="og:title" content="Tags" />
+<title>Rocket unit tests</title>
+  <meta property="og:title" content="Rocket unit tests" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Unit tests overview As we have seen in a previous post, we can launch the unit test suite through the C emulator using:
+$ cd $ROCKET_ROOT/rocket-chip/emulator $ make -jN run-asm-tests $ make -jN run-bmark-tests $ make -jN run-asm-tests-debug # With waveforms It is also possible to launch individual tests:
+$ make output/rv64ui-p-add.out # Emulation $ make output/rv64ui-p-add.vcd # Waveforms Each run produces the Verilog code of the chip (through Chisel):" />
+  <meta name="description" content="Unit tests overview As we have seen in a previous post, we can launch the unit test suite through the C emulator using:
+$ cd $ROCKET_ROOT/rocket-chip/emulator $ make -jN run-asm-tests $ make -jN run-bmark-tests $ make -jN run-asm-tests-debug # With waveforms It is also possible to launch individual tests:
+$ make output/rv64ui-p-add.out # Emulation $ make output/rv64ui-p-add.vcd # Waveforms Each run produces the Verilog code of the chip (through Chisel):" />
   <meta property="og:locale" content="en" /><meta property="og:image" content="" />
   
 
@@ -66,10 +70,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -94,11 +99,161 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Rocket unit tests</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-02-02 00:00:00 UTC">
+                02 Feb 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="">@Quentin Ducasse</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="unit-tests-overview">Unit tests overview</h2>
+<p>As we have seen in a <a href="https://qducasse.github.io/posts/2023-01-27-rocket/">previous post</a>, we can launch the unit test suite through the C emulator using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd $ROCKET_ROOT/rocket-chip/emulator
+</span></span><span style="display:flex;"><span>$ make -jN run-asm-tests
+</span></span><span style="display:flex;"><span>$ make -jN run-bmark-tests
+</span></span><span style="display:flex;"><span>$ make -jN run-asm-tests-debug <span style="color:#75715e"># With waveforms</span>
+</span></span></code></pre></div><p>It is also possible to launch individual tests:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make output/rv64ui-p-add.out <span style="color:#75715e"># Emulation</span>
+</span></span><span style="display:flex;"><span>$ make output/rv64ui-p-add.vcd <span style="color:#75715e"># Waveforms</span>
+</span></span></code></pre></div><p>Each run produces the Verilog code of the chip (through Chisel):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls $ROCKET_ROOT/rocket-chip/emulator/generated-src
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.0x0.0.regmap.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.0x0.1.regmap.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.0x2000000.0.regmap.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.0x40.0.regmap.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.0xc000000.0.regmap.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.anno.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.behav_srams.v
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.conf
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.d
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.dts
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.fir
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.graphml
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.memmap.json
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.plusArgs
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.rom.conf
+</span></span><span style="display:flex;"><span>freechips.rocketchip.system.DefaultConfig.v
+</span></span><span style="display:flex;"><span>TestHarness.anno.json
+</span></span></code></pre></div><p>Along with the chip, the associated C++ code generated by Verilator is also produced:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ls $ROCKET_ROOT/rocket-chip/emulator/generated-src/freechips.rocketchip.system.DefaultConfig
+</span></span><span style="display:flex;"><span>VTestHarness__1.cpp
+</span></span><span style="display:flex;"><span>VTestHarness__2.cpp
+</span></span><span style="display:flex;"><span>VTestHarness__3.cpp
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><blockquote>
+<p><em>Note:</em> For tests with waveforms, obtained specifying either <code>make output/&lt;test_name&gt;.vcd</code> or globally with <code>make &lt;suite_name&gt;-debug</code>, the generated files are in <code>generated-src-debug</code>.</p>
+</blockquote>
+<p>In the end, the <code>.out</code> file (or <code>.vcd</code>) is generated from its corresponding test in the <code>riscv-tests</code> repository. The <code>.out</code> file contains a cycle-by-cycle dump of write-back stage of the pipeline.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>C0: <span style="color:#ae81ff">483</span> <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> pc<span style="color:#f92672">=[</span>00000002138<span style="color:#f92672">]</span> W<span style="color:#f92672">[</span>r 3<span style="color:#f92672">=</span>000000007fff7fff<span style="color:#f92672">][</span>1<span style="color:#f92672">]</span> R<span style="color:#f92672">[</span>r 1<span style="color:#f92672">=</span>000000007fffffff<span style="color:#f92672">]</span> R<span style="color:#f92672">[</span>r 2<span style="color:#f92672">=</span>ffffffffffff8000<span style="color:#f92672">]</span> inst<span style="color:#f92672">=[</span>002081b3<span style="color:#f92672">]</span> add s1, ra, s0
+</span></span><span style="display:flex;"><span>C0: <span style="color:#ae81ff">484</span> <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> pc<span style="color:#f92672">=[</span>0000000213c<span style="color:#f92672">]</span> W<span style="color:#f92672">[</span>r29<span style="color:#f92672">=</span>000000007fff8000<span style="color:#f92672">][</span>1<span style="color:#f92672">]</span> R<span style="color:#f92672">[</span>r31<span style="color:#f92672">=</span>ffffffff80007ffe<span style="color:#f92672">]</span> R<span style="color:#f92672">[</span>r31<span style="color:#f92672">=</span>0000000000000005<span style="color:#f92672">]</span> inst<span style="color:#f92672">=[</span>7fff8eb7<span style="color:#f92672">]</span> lui t3, 0x7fff8
+</span></span><span style="display:flex;"><span>C0: <span style="color:#ae81ff">485</span> <span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> pc<span style="color:#f92672">=[</span>00000002140<span style="color:#f92672">]</span> W<span style="color:#f92672">[</span>r 0<span style="color:#f92672">=</span>0000000000000000<span style="color:#f92672">][</span>0<span style="color:#f92672">]</span> R<span style="color:#f92672">[</span>r 0<span style="color:#f92672">=</span>0000000000000000<span style="color:#f92672">]</span> R<span style="color:#f92672">[</span>r 0<span style="color:#f92672">=</span>0000000000000000<span style="color:#f92672">]</span> inst<span style="color:#f92672">=[</span>00000000<span style="color:#f92672">]</span> unknown
+</span></span></code></pre></div><h2 id="risc-v-unit-tests">RISC-V unit tests</h2>
+<p>Rocket uses the <a href="https://github.com/riscv-software-src/riscv-tests/tree/a6ab6ae6008ffc2ea907ea9f6d2b8379583e7d56">riscv-tests</a> through its <a href="https://github.com/chipsalliance/rocket-tools">rocket-tools</a> as its test suite.</p>
+<p>Those tests use <strong>Tests Virtual Machines (TVM)</strong>, a set of definitions to ensure the reproducibility of each test program. Each TVM is defined over an instruction set and execution privilege. For example, <code>rv32ui</code> covers RV32I at user-level while <code>rv64sv</code> covers RV64IV at supervisor level. Each TVM defines:</p>
+<ul>
+<li><strong>registers</strong></li>
+<li><strong>instructions</strong></li>
+<li><strong>portions of memory</strong></li>
+<li><strong>execution</strong></li>
+<li><strong>test data</strong></li>
+<li><strong>test results</strong></li>
+</ul>
+<p>A test program for RISC-V is written within a single assembly language file, which is passed through the C preprocessor, and all regular assembly directives can be used. Each test program should first include the <code>riscv_test.h</code> header file, which defines the macros used by the TVM. Each TVM runs on a specific <strong>environment</strong> from one of the following:</p>
+<ul>
+<li><code>p</code>: virtual memory is disabled, only core <code>0</code> is available</li>
+<li><code>pm</code>: virtual memory is disabled, all cores are available</li>
+<li><code>pt</code>: virtual memory is disabled, timer interrupt fires every 100 cycles</li>
+<li><code>v</code>: virtual memory is enabled</li>
+</ul>
+<h2 id="unit-tests-workflow">Unit tests workflow</h2>
+<p>Dissecting the emulator <code>Makefile</code> and co., we can look at what &ldquo;exactly&rdquo; is happening when we launch a unit test.</p>
+<p>The emulator&rsquo;s <a href="https://github.com/chipsalliance/rocket-chip/blob/master/emulator/Makefile"><code>Makefile</code></a> defines flags and directories and launches the final commands to run the tests and benchmarks. It includes the root <a href="https://github.com/chipsalliance/rocket-chip/blob/master/Makefrag"><code>Makefrag</code></a> and the <a href="https://github.com/chipsalliance/rocket-chip/blob/master/emulator/Makefrag-verilator"><code>Makefrag-verilator</code></a>.</p>
+<p>The root <code>Makefrag</code> builds Chisel3 and FIRRTL from source, it sets several jars and <code>sbt</code> configuration (memory size, timeout cycles, etc.).</p>
+<p>The <code>Makefrag-verilator</code> rules:</p>
+<ul>
+<li>generate the <a href="https://github.com/chipsalliance/firrtl">FIRRTL</a> intermediate representation of the core</li>
+<li>generate the Verilog files from the core as well</li>
+<li>build and install <a href="https://github.com/verilator/verilator">Verilator</a> directly</li>
+<li>run Verilator to emulate the circuit</li>
+</ul>
+<p>The test itself is gathered from the installed <code>riscv-tests</code> at and a symbolic link is setup in the output.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ln -fs /opt/riscv-rocket/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-addi output/rv64ui-p-addi
+</span></span></code></pre></div><p>The test itself is ran on top of the <code>emulator</code> with the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./emulator-freechips.rocketchip.system-freechips.rocketchip.system.DefaultConfig <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    +max-cycles<span style="color:#f92672">=</span><span style="color:#ae81ff">100000000</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    +verbose output/rv64ui-p-addi <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    3&gt;&amp;<span style="color:#ae81ff">1</span> 1&gt;&amp;<span style="color:#ae81ff">2</span> 2&gt;&amp;3<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    | /bin/spike-dasm  &gt; output/rv64ui-p-addi.out<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">[</span> $PIPESTATUS -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/riscv/">
+                riscv
+              </a>
+            </div>
+            
+            <div class="post-tags">
+              <a href="/tags/rocket/">
+                rocket
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2023-01-27-rocket/">Rocket chip building</a></li>
+    
+    <li><a href="/posts/2022-04-12-rocket_instruction/">Adding instructions to the RISC-V Rocket core</a></li>
+    
+    <li><a href="/posts/2022-04-24-v8_setup/">V8 RISC-V setup</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -118,6 +273,8 @@
     
   
 </script>
+
+  
 
 </body>
 
