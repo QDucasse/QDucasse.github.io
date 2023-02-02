@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Quentin Ducasse" />
-  <meta property="og:url" content="https://qducasse.github.io/tags/riscv/" />
-  <link rel="canonical" href="https://qducasse.github.io/tags/riscv/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
+  <meta property="og:url" content="https://qducasse.github.io/posts/2023-01-27-rocket_installation/" />
+  <link rel="canonical" href="https://qducasse.github.io/posts/2023-01-27-rocket_installation/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
 
   <script type="application/ld+json">
   {
@@ -18,10 +18,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/qducasse.github.io"
       },
-      "articleSection" : "tags",
-      "name" : "riscv",
-      "headline" : "riscv",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "Rocket chip building",
+      "headline" : "Rocket chip building",
+      "description" : "Installation and simulation of the Rocket processor Rocket is a fully-featured RISC-V processor capable of running Linux. Here, we will install the core and its toolchain.\nSetup Since we will need two different repositories, let\u0026rsquo;s setup a root directory rocket-root and clone both of the projects:\n$ mkdir rocket-root \u0026amp;\u0026amp; cd rocket-root $ git clone git@github.com:chipsalliance\/rocket-chip.git $ git clone git@github.com:chipsalliance\/rocket-tools.git $ export ROCKET_ROOT=\u0026#34;$HOME\/path\/to\/rocket-root\u0026#34; The known checkout hash for the rocket-tools repository is noted in the file riscv-tools.",
       "inLanguage" : "en-US",
       "author" : "Quentin Ducasse",
       "creator" : "Quentin Ducasse",
@@ -29,17 +29,21 @@
       "accountablePerson" : "Quentin Ducasse",
       "copyrightHolder" : "Quentin Ducasse",
       "copyrightYear" : "2023",
-      "datePublished": "2023-02-01 00:00:00 \u002b0000 UTC",
-      "dateModified" : "2023-02-01 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/qducasse.github.io\/tags\/riscv\/",
-      "keywords" : [  ]
+      "datePublished": "2023-01-27 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2023-01-27 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/qducasse.github.io\/posts\/2023-01-27-rocket_installation\/",
+      "keywords" : [ "riscv","rocket", ]
   }
 </script>
-<title>riscv</title>
-  <meta property="og:title" content="riscv" />
+<title>Rocket chip building</title>
+  <meta property="og:title" content="Rocket chip building" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Installation and simulation of the Rocket processor Rocket is a fully-featured RISC-V processor capable of running Linux. Here, we will install the core and its toolchain.
+Setup Since we will need two different repositories, let&amp;rsquo;s setup a root directory rocket-root and clone both of the projects:
+$ mkdir rocket-root &amp;amp;&amp;amp; cd rocket-root $ git clone git@github.com:chipsalliance/rocket-chip.git $ git clone git@github.com:chipsalliance/rocket-tools.git $ export ROCKET_ROOT=&amp;#34;$HOME/path/to/rocket-root&amp;#34; The known checkout hash for the rocket-tools repository is noted in the file riscv-tools." />
+  <meta name="description" content="Installation and simulation of the Rocket processor Rocket is a fully-featured RISC-V processor capable of running Linux. Here, we will install the core and its toolchain.
+Setup Since we will need two different repositories, let&amp;rsquo;s setup a root directory rocket-root and clone both of the projects:
+$ mkdir rocket-root &amp;amp;&amp;amp; cd rocket-root $ git clone git@github.com:chipsalliance/rocket-chip.git $ git clone git@github.com:chipsalliance/rocket-tools.git $ export ROCKET_ROOT=&amp;#34;$HOME/path/to/rocket-root&amp;#34; The known checkout hash for the rocket-tools repository is noted in the file riscv-tools." />
   <meta property="og:locale" content="en" /><meta property="og:image" content="" />
   
 
@@ -66,10 +70,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -94,99 +99,143 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term">riscv</h1>
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-02-01 00:00:00 UTC">Feb 01</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2023-02-01-rocket_unit_tests/">Rocket unit tests</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-01-27 00:00:00 UTC">Jan 27</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2023-01-27-rocket_installation/">Rocket chip building</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          <section>
-            <h1 class="site-date-catalog">2022</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-04-24 00:00:00 UTC">Apr 24</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-04-24-v8_setup/">V8 RISC-V setup</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-04-12 00:00:00 UTC">Apr 12</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-04-12-rocket_instruction/">Adding instructions to the RISC-V Rocket core</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-03-23 00:00:00 UTC">Mar 23</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-03-23-riscv_toolchain/">RISC-V toolchain with custom glibc</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2022-02-21 00:00:00 UTC">Feb 21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/2022-02-21-rv_immediate/">RISC-V load immediate pseudo-instruction</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Rocket chip building</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-01-27 00:00:00 UTC">
+                27 Jan 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="">@Quentin Ducasse</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="installation-and-simulation-of-the-rocket-processor">Installation and simulation of the Rocket processor</h2>
+<p>Rocket is a fully-featured RISC-V processor capable of running Linux. Here, we will install the <a href="https://github.com/chipsalliance/rocket-chip">core</a> and its <a href="https://github.com/chipsalliance/rocket-tools">toolchain</a>.</p>
+<h3 id="setup">Setup</h3>
+<p>Since we will need two different repositories, let&rsquo;s setup a root directory <code>rocket-root</code> and clone both of the projects:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir rocket-root <span style="color:#f92672">&amp;&amp;</span> cd rocket-root
+</span></span><span style="display:flex;"><span>$ git clone git@github.com:chipsalliance/rocket-chip.git
+</span></span><span style="display:flex;"><span>$ git clone git@github.com:chipsalliance/rocket-tools.git
+</span></span><span style="display:flex;"><span>$ export ROCKET_ROOT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/path/to/rocket-root&#34;</span>
+</span></span></code></pre></div><p>The known checkout hash for the <code>rocket-tools</code> repository is noted in the file <code>riscv-tools.hash</code>. At the time of writing, the latest Rocket release is <code>1.6</code> so let&rsquo;s checkout:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd $ROCKET_ROOT/rocket-chip <span style="color:#f92672">&amp;&amp;</span> git checkout v1.5
+</span></span><span style="display:flex;"><span>$ cd $ROCKET_ROOT/rocket-tools <span style="color:#f92672">&amp;&amp;</span> git checkout <span style="color:#e6db74">`</span>cat $ROCKET_ROOT/rocket-chip/riscv-tools.hash<span style="color:#e6db74">`</span>
+</span></span></code></pre></div><blockquote>
+<p>Note: The <code>v1.5</code> and <code>1.6</code> use the same <code>riscv-tools</code> version</p>
+</blockquote>
+<h3 id="rocket-tools-installation">Rocket tools installation</h3>
+<p>Thanks to Pascal for its <a href="https://gist.github.com/pcotret/11afe52a1834172981c1e371b8bdcf03">gist</a>, we will break it down in the next section.
+We first start by building the tools. The <code>rocket-tools</code> repository is a collection of the needed tools that support the Rocket chip generator such as <code>spike</code> the ISA simulator, <code>riscv-tests</code> the ISA-level unit tests, <code>riscv-opcodes</code> the enumeration of all RISC-V opcodes executable by the simulator and <code>riscv-pk</code> which contains both <code>bbl</code> the boot loader for Linux and <code>pk</code> a proxy kernel.</p>
+<p>First of all, the repository depends on the following Ubuntu packages:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt-get update
+</span></span><span style="display:flex;"><span>$ sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev libusb-1.0-0-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev libfl-dev
+</span></span></code></pre></div><p>Once the dependencies are installed, we need to redirect some of the git submodules to their <code>https</code> counterparts:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git submodule set-url fsf-binutils-gdb https://sourceware.org/git/binutils-gdb.git
+</span></span><span style="display:flex;"><span>$ git submodule sync
+</span></span></code></pre></div><p>And the qemu repositories:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git submodule set-url riscv-qemu https://github.com/riscv/riscv-qemu.git
+</span></span><span style="display:flex;"><span>$ git submodule sync
+</span></span><span style="display:flex;"><span>$ git submodule update --init riscv-qemu
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/vgabios https://git.qemu.org/git/vgabios.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/seabios https://git.qemu.org/git/seabios.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/SLOF https://git.qemu.org/git/SLOF.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/ipxe https://git.qemu.org/git/ipxe.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/openbios https://git.qemu.org/git/openbios.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/openhackware https://git.qemu.org/git/openhackware.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/qemu-palcode https://github.com/rth7680/qemu-palcode.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/sgabios https://git.qemu.org/git/sgabios.git
+</span></span><span style="display:flex;"><span>$ git submodule set-url pixman https://gitlab.freedesktop.org/pixman/pixman 
+</span></span><span style="display:flex;"><span>$ git submodule set-url dtc https://git.qemu.org/git/dtc.git  
+</span></span><span style="display:flex;"><span>$ git submodule set-url roms/u-boot https://git.qemu.org/git/u-boot.git
+</span></span><span style="display:flex;"><span>$ git submodule sync
+</span></span></code></pre></div><p>Finally, the installation to the path of your choice (<code>/opt/riscv-rocket</code>) here:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd $ROCKET_ROOT
+</span></span><span style="display:flex;"><span>$ git submodule update --init --recursive --progress
+</span></span><span style="display:flex;"><span>$ export RISCV<span style="color:#f92672">=</span>/opt/rocket-riscv
+</span></span><span style="display:flex;"><span>$ ./build.sh
+</span></span></code></pre></div><p>The toolchain is now installed!</p>
+<h3 id="environment-setup-for-the-rocket-chip">Environment Setup for the Rocket Chip</h3>
+<p>With the tools installed, the missing element is the  Scala installation. We first need <a href="https://github.com/coursier/coursier">coursier</a>, the Scala artifact installer along with a Java sdk. First check your Java installation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt-get install default-jdk	
+</span></span><span style="display:flex;"><span>$ java -version
+</span></span></code></pre></div><p>Then install Coursier:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd $ROCKET_ROOT
+</span></span><span style="display:flex;"><span>$ wget https://github.com/coursier/coursier/releases/latest/download/coursier.jar
+</span></span><span style="display:flex;"><span>$ java -jar coursier.jar setup
+</span></span></code></pre></div><p>We can finally initialize the Rocket chip:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd $ROCKET_ROOT/rocket-chip
+</span></span><span style="display:flex;"><span>$ git submodule update --init
+</span></span></code></pre></div><h3 id="building-the-simulator">Building the simulator</h3>
+<p>We can now build the C simulator to run assembly and benchmarks tests (adding <code>-debug</code> generates the waveform), using <code>N</code> as the number of cores:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd emulator
+</span></span><span style="display:flex;"><span>$ make
+</span></span><span style="display:flex;"><span>$ make -jN run-asm-tests
+</span></span><span style="display:flex;"><span>$ make -jN run-bmark-tests
+</span></span><span style="display:flex;"><span>$ make -jN run-asm-tests-debug <span style="color:#75715e"># With waveforms</span>
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/riscv/">
+                riscv
+              </a>
+            </div>
+            
+            <div class="post-tags">
+              <a href="/tags/rocket/">
+                rocket
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2022-04-12-rocket_instruction/">Adding instructions to the RISC-V Rocket core</a></li>
+    
+    <li><a href="/posts/2022-04-24-v8_setup/">V8 RISC-V setup</a></li>
+    
+    <li><a href="/posts/2022-03-23-riscv_toolchain/">RISC-V toolchain with custom glibc</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -206,6 +255,8 @@
     
   
 </script>
+
+  
 
 </body>
 

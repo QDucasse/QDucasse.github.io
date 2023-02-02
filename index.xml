@@ -6,13 +6,13 @@
     <description>Recent content on Lectern</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rocket unit tests</title>
-      <link>https://qducasse.github.io/posts/2023-01-31-rocket_unit_tests/</link>
-      <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
+      <link>https://qducasse.github.io/posts/2023-02-01-rocket_unit_tests/</link>
+      <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/2023-01-31-rocket_unit_tests/</guid>
+      <guid>https://qducasse.github.io/posts/2023-02-01-rocket_unit_tests/</guid>
       <description>Unit tests overview As we have seen in a previous post, we can launch the unit test suite through the C emulator using:
 $ cd $ROCKET_ROOT/rocket-chip/emulator $ make -jN run-asm-tests $ make -jN run-bmark-tests $ make -jN run-asm-tests-debug # With waveforms It is also possible to launch individual tests:
 $ make output/rv64ui-p-add.out # Emulation $ make output/rv64ui-p-add.vcd # Waveforms Each run produces the Verilog code of the chip (through Chisel):</description>
@@ -20,10 +20,10 @@ $ make output/rv64ui-p-add.out # Emulation $ make output/rv64ui-p-add.vcd # Wave
     
     <item>
       <title>Rocket chip building</title>
-      <link>https://qducasse.github.io/posts/2023-01-27-rocket/</link>
+      <link>https://qducasse.github.io/posts/2023-01-27-rocket_installation/</link>
       <pubDate>Fri, 27 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/2023-01-27-rocket/</guid>
+      <guid>https://qducasse.github.io/posts/2023-01-27-rocket_installation/</guid>
       <description>Installation and simulation of the Rocket processor Rocket is a fully-featured RISC-V processor capable of running Linux. Here, we will install the core and its toolchain.
 Setup Since we will need two different repositories, let&amp;rsquo;s setup a root directory rocket-root and clone both of the projects:
 $ mkdir rocket-root &amp;amp;&amp;amp; cd rocket-root $ git clone git@github.com:chipsalliance/rocket-chip.git $ git clone git@github.com:chipsalliance/rocket-tools.git $ export ROCKET_ROOT=&amp;#34;$HOME/path/to/rocket-root&amp;#34; The known checkout hash for the rocket-tools repository is noted in the file riscv-tools.</description>
