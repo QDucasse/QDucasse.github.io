@@ -204,6 +204,7 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat custom-p-unknown.dump
 </span></span><span style="display:flex;"><span>custom-p-unknown:     file format elf64-littleriscv
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Disassembly of section .text.init:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">0000000080000000</span> &lt;_start&gt;:
@@ -272,16 +273,17 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
 </span></span><span style="display:flex;"><span>    800000d8:	f66290e3          	bne	t0,t1,80000038 &lt;handle_exception&gt;
 </span></span><span style="display:flex;"><span>    800000dc:	<span style="color:#ae81ff">30005073</span>          	csrwi	mstatus,0
 </span></span><span style="display:flex;"><span>    800000e0:	<span style="color:#ae81ff">00000297</span>          	auipc	t0,0x0
-</span></span><span style="display:flex;"><span>    800000e4:	<span style="color:#ae81ff">01428293</span>          	addi	t0,t0,20 <span style="color:#75715e"># 800000f4 &lt;reset_vector+0xac&gt;</span>
+</span></span><span style="display:flex;"><span>    800000e4:	<span style="color:#ae81ff">01428293</span>          	addi	t0,t0,20 <span style="color:#75715e"># 800000f4 &lt;test_2&gt;</span>
 </span></span><span style="display:flex;"><span>    800000e8:	<span style="color:#ae81ff">34129073</span>          	csrw	mepc,t0
 </span></span><span style="display:flex;"><span>    800000ec:	f1402573          	csrr	a0,mhartid
 </span></span><span style="display:flex;"><span>    800000f0:	<span style="color:#ae81ff">30200073</span>          	mret
-</span></span><span style="display:flex;"><span>    800000f4:	0ff0000f          	fence
-</span></span><span style="display:flex;"><span>    800000f8:	<span style="color:#ae81ff">00100193</span>          	li	gp,1
-</span></span><span style="display:flex;"><span>    800000fc:	<span style="color:#ae81ff">00000073</span>          	ecall
-</span></span><span style="display:flex;"><span>    80000100:	c0001073          	unimp
-</span></span><span style="display:flex;"><span>    80000104:	<span style="color:#ae81ff">0000</span>                	unimp
-</span></span><span style="display:flex;"><span>    80000106:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>00000000800000f4 &lt;test_2&gt;:
+</span></span><span style="display:flex;"><span>    800000f4:	0002a00b          	0x2a00b
+</span></span><span style="display:flex;"><span>    800000f8:	0ff0000f          	fence
+</span></span><span style="display:flex;"><span>    800000fc:	<span style="color:#ae81ff">00100193</span>          	li	gp,1
+</span></span><span style="display:flex;"><span>    80000100:	<span style="color:#ae81ff">00000073</span>          	ecall
+</span></span><span style="display:flex;"><span>    80000104:	c0001073          	unimp
 </span></span><span style="display:flex;"><span>    80000108:	<span style="color:#ae81ff">0000</span>                	unimp
 </span></span><span style="display:flex;"><span>    8000010a:	<span style="color:#ae81ff">0000</span>                	unimp
 </span></span><span style="display:flex;"><span>    8000010c:	<span style="color:#ae81ff">0000</span>                	unimp
@@ -307,7 +309,7 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
 </span></span><span style="display:flex;"><span>    80000134:	<span style="color:#ae81ff">0000</span>                	unimp
 </span></span><span style="display:flex;"><span>    80000136:	<span style="color:#ae81ff">0000</span>                	unimp
 </span></span><span style="display:flex;"><span>    80000138:	<span style="color:#ae81ff">0000</span>                	unimp
-</span></span><span style="display:flex;"><span>    8000013a:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000013a:	<span style="color:#ae81ff">0000</span>                	unim
 </span></span></code></pre></div><p>TODO: Install the test
 TODO: Test on the emulator</p>
 
