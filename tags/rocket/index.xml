@@ -6,7 +6,27 @@
     <description>Recent content in rocket on Lectern</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/rocket/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/tags/rocket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding a unit test in Rocket</title>
+      <link>https://qducasse.github.io/posts/2023-02-03-rocket_adding_a_unit_test/</link>
+      <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/2023-02-03-rocket_adding_a_unit_test/</guid>
+      <description>Unit test workaround All RISC-V tests are directly available in a compiled format with their dump to look at, use and build on. However, adding a unit test in the Rocket framework to, let&amp;rsquo;s say, add an instruction or a register, requires the developer to modify the complete toolchain.
+To circumvent the need to change the entire toolchain to test additions to the binary, authors of FIXER used the toolchain to generate a binary that they then tagged and expanded with the direct binary corresponding of their custom instruction.</description>
+    </item>
+    
+    <item>
+      <title>Rocket test macros</title>
+      <link>https://qducasse.github.io/posts/2023-02-02-rocket_inspecting_a_test/</link>
+      <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/2023-02-02-rocket_inspecting_a_test/</guid>
+      <description>Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.
+Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the case of Rocket) and installed in /path/to/toolchain/riscv64-unknown-elf/share/riscv-tests/.</description>
+    </item>
+    
     <item>
       <title>Rocket unit tests</title>
       <link>https://qducasse.github.io/posts/2023-02-01-rocket_unit_tests/</link>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.97.3" />
@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Quentin Ducasse" />
-  <meta property="og:url" content="https://qducasse.github.io/" />
-  <link rel="canonical" href="https://qducasse.github.io/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
+  <meta property="og:url" content="https://qducasse.github.io/posts/2023-02-03-rocket_adding_a_unit_test/" />
+  <link rel="canonical" href="https://qducasse.github.io/posts/2023-02-03-rocket_adding_a_unit_test/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
 
   <script type="application/ld+json">
   {
@@ -18,10 +18,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/qducasse.github.io"
       },
-      "articleSection" : "",
-      "name" : "Lectern",
-      "headline" : "Lectern",
-      "description" : "Notes and Memos, Quentin DUCASSE",
+      "articleSection" : "posts",
+      "name" : "Adding a unit test in Rocket",
+      "headline" : "Adding a unit test in Rocket",
+      "description" : "Unit test workaround All RISC-V tests are directly available in a compiled format with their dump to look at, use and build on. However, adding a unit test in the Rocket framework to, let\u0026rsquo;s say, add an instruction or a register, requires the developer to modify the complete toolchain.\nTo circumvent the need to change the entire toolchain to test additions to the binary, authors of FIXER used the toolchain to generate a binary that they then tagged and expanded with the direct binary corresponding of their custom instruction.",
       "inLanguage" : "en-US",
       "author" : "Quentin Ducasse",
       "creator" : "Quentin Ducasse",
@@ -31,15 +31,17 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-02-03 00:00:00 \u002b0000 UTC",
       "dateModified" : "2023-02-03 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/qducasse.github.io\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/qducasse.github.io\/posts\/2023-02-03-rocket_adding_a_unit_test\/",
+      "keywords" : [ "riscv","rocket", ]
   }
 </script>
-<title>Lectern</title>
-  <meta property="og:title" content="Lectern" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Notes and Memos, Quentin DUCASSE" />
-  <meta name="description" content="Notes and Memos, Quentin DUCASSE" />
+<title>Adding a unit test in Rocket</title>
+  <meta property="og:title" content="Adding a unit test in Rocket" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Unit test workaround All RISC-V tests are directly available in a compiled format with their dump to look at, use and build on. However, adding a unit test in the Rocket framework to, let&amp;rsquo;s say, add an instruction or a register, requires the developer to modify the complete toolchain.
+To circumvent the need to change the entire toolchain to test additions to the binary, authors of FIXER used the toolchain to generate a binary that they then tagged and expanded with the direct binary corresponding of their custom instruction." />
+  <meta name="description" content="Unit test workaround All RISC-V tests are directly available in a compiled format with their dump to look at, use and build on. However, adding a unit test in the Rocket framework to, let&amp;rsquo;s say, add an instruction or a register, requires the developer to modify the complete toolchain.
+To circumvent the need to change the entire toolchain to test additions to the binary, authors of FIXER used the toolchain to generate a binary that they then tagged and expanded with the direct binary corresponding of their custom instruction." />
   <meta property="og:locale" content="en" /><meta property="og:image" content="" />
   
 
@@ -66,10 +68,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -94,259 +97,97 @@
 </div>
 <div class="header-line"></div>
 
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-02-03 00:00:00 UTC">Feb 03</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-02-02-rocket_inspecting_a_test/">Rocket test macros</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-02-03 00:00:00 UTC">Feb 03</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-02-03-rocket_adding_a_unit_test/">Adding a unit test in Rocket</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-02-01 00:00:00 UTC">Feb 01</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-02-01-rocket_unit_tests/">Rocket unit tests</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-01-27 00:00:00 UTC">Jan 27</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-01-27-rocket_installation/">Rocket chip building</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          <section>
-            <h1 class="site-date-catalog">2022</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-28 00:00:00 UTC">Apr 28</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-28-nojitsu/">NoJITsu: Locking Down JavaScript Engines</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/article/"><strong>Article</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-26 00:00:00 UTC">Apr 26</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-26-jitguard/">JITGuard: JIT Compiler hardened with Intel SGX</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/article/"><strong>Article</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-24 00:00:00 UTC">Apr 24</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-24-v8_setup/">V8 RISC-V setup</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-12 00:00:00 UTC">Apr 12</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-12-rocket_instruction/">Adding instructions to the RISC-V Rocket core</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-04 00:00:00 UTC">Apr 04</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-04-trampolines/">Cogit runtime trampolines</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-03-23 00:00:00 UTC">Mar 23</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-03-23-riscv_toolchain/">RISC-V toolchain with custom glibc</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-03-10 00:00:00 UTC">Mar 10</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-03-10-jit_debug/">Debugging Pharo JIT code in gdb</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-02-21 00:00:00 UTC">Feb 21</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-02-21-rv_immediate/">RISC-V load immediate pseudo-instruction</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Adding a unit test in Rocket</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-02-03 00:00:00 UTC">
+                03 Feb 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="">@Quentin Ducasse</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="unit-test-workaround">Unit test workaround</h2>
+<p>All RISC-V tests are directly available in a compiled format with their dump to look at, use and build on. However, adding a unit test in the Rocket framework to, let&rsquo;s say, add an instruction or a register, requires the developer to modify the complete toolchain.</p>
+<p>To circumvent the need to change the entire toolchain to test additions to the binary, authors of <a href="https://ieeexplore.ieee.org/document/8714980">FIXER</a> used the toolchain to generate a binary that they then tagged and expanded with the direct binary corresponding of their custom instruction. For example, they add <em>Control Flow Integrity (CFI)</em> mechanisms to check forward-edge and backward-edge control flow through tags:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span> () {          <span style="color:#66d9ef">void</span> myFunc() {
+</span></span><span style="display:flex;"><span>    ...                     ...
+</span></span><span style="display:flex;"><span>    CFI_CALL                CFI_RET
+</span></span><span style="display:flex;"><span>    myFunc();               <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    ...                 }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That then get directly expanded to the binary representation of the instruction. They use the <code>custom</code> instructions already available in the Rocket decoder and usable through their <a href="https://github.com/chipsalliance/rocket-chip/blob/master/src/main/scala/scie/SCIE.scala"><em>Simple Custom Instruction Extension (SCIE)</em></a>. The expanded assembly looks like the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#75715e"># CFI_CALL               # CFI_RET    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">auipc</span> <span style="color:#66d9ef">t0</span>,<span style="color:#ae81ff">0</span>               <span style="color:#66d9ef">.word</span> <span style="color:#ae81ff">0x0200428b</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add</span> <span style="color:#66d9ef">t0</span>,<span style="color:#66d9ef">t0</span>,<span style="color:#ae81ff">14</span>             <span style="color:#66d9ef">bne</span> <span style="color:#66d9ef">t0</span>,<span style="color:#66d9ef">ra</span>,<span style="color:#66d9ef">_cfi_error</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">.word</span> <span style="color:#ae81ff">0x0002a00b</span>         <span style="color:#66d9ef">jr</span> <span style="color:#66d9ef">ra</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">call</span> <span style="color:#66d9ef">myFun</span>
+</span></span></code></pre></div><h2 id="writing-our-own-unit-test">Writing our own unit test</h2>
+<p>Using the same workaround as the FIXER authors, we will try to write and compile a test with a fictive instruction (we will look at how we can implement the instruction in the actual core later on).</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/riscv/">
+                riscv
+              </a>
+            </div>
+            
+            <div class="post-tags">
+              <a href="/tags/rocket/">
+                rocket
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2023-02-02-rocket_inspecting_a_test/">Rocket test macros</a></li>
+    
+    <li><a href="/posts/2023-02-01-rocket_unit_tests/">Rocket unit tests</a></li>
+    
+    <li><a href="/posts/2023-01-27-rocket_installation/">Rocket chip building</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -366,6 +207,8 @@
     
   
 </script>
+
+  
 
 </body>
 

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.97.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Quentin Ducasse" />
+  <meta property="og:url" content="https://qducasse.github.io/posts/2023-02-02-rocket_inspecting_a_test/" />
+  <link rel="canonical" href="https://qducasse.github.io/posts/2023-02-02-rocket_inspecting_a_test/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/qducasse.github.io"
+      },
+      "articleSection" : "posts",
+      "name" : "Rocket test macros",
+      "headline" : "Rocket test macros",
+      "description" : "Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.\nThose tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the case of Rocket) and installed in \/path\/to\/toolchain\/riscv64-unknown-elf\/share\/riscv-tests\/.",
+      "inLanguage" : "en-US",
+      "author" : "Quentin Ducasse",
+      "creator" : "Quentin Ducasse",
+      "publisher": "Quentin Ducasse",
+      "accountablePerson" : "Quentin Ducasse",
+      "copyrightHolder" : "Quentin Ducasse",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-02-03 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2023-02-03 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/qducasse.github.io\/posts\/2023-02-02-rocket_inspecting_a_test\/",
+      "keywords" : [ "riscv","rocket", ]
+  }
+</script>
+<title>Rocket test macros</title>
+  <meta property="og:title" content="Rocket test macros" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.
+Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the case of Rocket) and installed in /path/to/toolchain/riscv64-unknown-elf/share/riscv-tests/." />
+  <meta name="description" content="Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.
+Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the case of Rocket) and installed in /path/to/toolchain/riscv64-unknown-elf/share/riscv-tests/." />
+  <meta property="og:locale" content="en" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:1000px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Lectern">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Lectern</a
+    >
+  </div>
+  <div class="header-subtitle">Notes and Memos, Quentin DUCASSE</div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+  <div class="header-item">
+    <a href="https://github.com/QDucasse" target="_blank">Github</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="https://twitter.com/quentin_ducasse" target="_blank">Twitter</a>
+  </div>
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Rocket test macros</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-02-03 00:00:00 UTC">
+                03 Feb 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="">@Quentin Ducasse</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="unit-test-workflow-recap">Unit test workflow recap</h2>
+<p>As presented in a previous post, the Rocket framework for unit tests revolves around the <a href="https://github.com/riscv-software-src/riscv-tests">riscv-tests</a> repository. Those tests are separated by the extensions they use and the <em>Test Virtual Machine (TVM)</em> they should be run on. Simple macros expand the utilities and encodings are added to define instructions, <em>Control Status Registers (CSRs)</em>, etc.</p>
+<p>Those tests are compiled using the RISC-V GNU toolchain, (<a href="https://github.com/chipsalliance/rocket-tools">rocket-tools</a> in the case of Rocket) and installed in <code>/path/to/toolchain/riscv64-unknown-elf/share/riscv-tests/</code>. Both the binary and dump files are available in <code>benchmarks</code> and <code>isa</code>.</p>
+<p>This means that all RISC-V tests are directly available in a compiled format with their dump to look at, use and build on. However, this also means that adding a unit test in this framework to, let&rsquo;s say, add an instruction or a register, requires the developer to modify the complete toolchain.</p>
+<h2 id="types-and-structures-of-tests">Types and structures of tests</h2>
+<p>First of all, <code>riscv-tests</code> implements two types of tests, either simple unit tests per instruction (modulo the TVM and environment) that are implemented through direct assembly and macros or benchmarks that depends on more complex C files. The first are located in the <code>riscv-tests/isa</code> directory while the latter are in <code>riscv-tests/benchmarks</code></p>
+<p>The structure of the <code>isa</code> tests all use the <a href="https://github.com/riscv-software-src/riscv-tests/blob/master/isa/macros/scalar/test_macros.h"><code>test_macros.h</code></a> header that defines assembly stubs that can be used in the unit tests. Along with this file, each environment adds its <code>riscv_test.h</code> header and encodings defined in the <a href="https://github.com/riscv/riscv-test-env"><code>riscv-test-env</code></a> repository. Along with this environment are the linker scripts and eventual <code>vm</code> to simulate a virtual memory system.</p>
+<p>Let&rsquo;s look at the <code>isa/rv64ui/addi.S</code> unit test:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;riscv_test.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;test_macros.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>RVTEST_RV64U
+</span></span><span style="display:flex;"><span>RVTEST_CODE_BEGIN
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">TEST_IMM_OP</span>( <span style="color:#ae81ff">2</span>,  addi, <span style="color:#ae81ff">0x00000000</span>, <span style="color:#ae81ff">0x00000000</span>, <span style="color:#ae81ff">0x000</span> );
+</span></span><span style="display:flex;"><span>  [...]
+</span></span><span style="display:flex;"><span>  TEST_IMM_OP( <span style="color:#ae81ff">16</span>, addi, <span style="color:#ae81ff">0x0000000080000000</span>, <span style="color:#ae81ff">0x7fffffff</span>, <span style="color:#ae81ff">0x001</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TEST_IMM_SRC1_EQ_DEST( <span style="color:#ae81ff">17</span>, addi, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">11</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TEST_IMM_DEST_BYPASS( <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">0</span>, addi, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">11</span> );
+</span></span><span style="display:flex;"><span>  [...]
+</span></span><span style="display:flex;"><span>  TEST_IMM_SRC1_BYPASS( <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">2</span>, addi, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">9</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TEST_IMM_ZEROSRC1( <span style="color:#ae81ff">24</span>, addi, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span> );
+</span></span><span style="display:flex;"><span>  TEST_IMM_ZERODEST( <span style="color:#ae81ff">25</span>, addi, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">50</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TEST_PASSFAIL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RVTEST_CODE_END
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .data
+</span></span><span style="display:flex;"><span>RVTEST_DATA_BEGIN
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TEST_DATA
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RVTEST_DATA_END
+</span></span></code></pre></div><p>As we can see, multiple macros are used to define the tests and the harness around them. To go quickly over them, they surround both the code and data section and provide some helpers.</p>
+<h3 id="environment-macros">Environment macros</h3>
+<p>For the environment macros defined in their respective environments, we will look at the <code>p</code> environment and the <code>rv64u</code> parameters so in <code>env/p/riscv_test.h</code> (most of the others depend on the <code>p</code> as the base one!):</p>
+<ul>
+<li><strong><code>RVTEST_64U</code></strong>: is the base environment sets up the extension set we will be working with. It expands to:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_RV64U                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  .macro init;                            \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  .endm
+</span></span></span></code></pre></div><blockquote>
+<p><em>Note</em> <code>.macro init</code> and <code>.endm</code> are <a href="http://www.sourceware.org/binutils/docs-2.12/as.info/Macro.html">GNU Assembler macros</a> handled by <a href="https://www.wikiwand.com/en/GNU_Binutils"><code>binutils</code></a> that directly produce assembly!</p>
+</blockquote>
+<p>The macro that expands into assembly code and is used if floating point numbers are required!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_RV64UF                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  .macro init;                            \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  RVTEST_FP_ENABLE;                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  .endm
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_FP_ENABLE                  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  li a0, MSTATUS_FS &amp; (MSTATUS_FS &gt;&gt; 1);  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  csrs mstatus, a0;                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  csrwi fcsr, 0
+</span></span></span></code></pre></div><ul>
+<li><strong><code>RVTEST_CODE_BEGIN</code></strong>: defines the starting point of the test and a way handle exceptions and trap vectors.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_CODE_BEGIN                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .section .text.init;                                            \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .align  6;                                                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .weak stvec_handler;                                            \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .weak mtvec_handler;                                            \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .globl _start;                                                  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">_start:                                                                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        </span><span style="color:#75715e">/* reset vector */</span><span style="color:#75715e">                                              \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        j reset_vector;                                                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .align 2;                                                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">trap_vector:                                                            \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        </span><span style="color:#75715e">/* test whether the test came from pass/fail */</span><span style="color:#75715e">                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        csrr t5, mcause;                                                \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        li t6, CAUSE_USER_ECALL;                                        \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        beq t5, t6, write_tohost;                                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        li t6, CAUSE_SUPERVISOR_ECALL;                                  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        beq t5, t6, write_tohost;                                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        li t6, CAUSE_MACHINE_ECALL;                                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        beq t5, t6, write_tohost;                                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        </span><span style="color:#75715e">/* if an mtvec_handler is defined, jump to it */</span><span style="color:#75715e">                \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        la t5, mtvec_handler;                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        beqz t5, 1f;                                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        jr t5;                                                          \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        </span><span style="color:#75715e">/* was it an interrupt or an exception? */</span><span style="color:#75715e">                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  1:    csrr t5, mcause;                                                \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        bgez t5, handle_exception;                                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        INTERRUPT_HANDLER;                                              \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">handle_exception:                                                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        </span><span style="color:#75715e">/* we don&#39;t know how to handle whatever the exception was */</span><span style="color:#75715e">    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  other_exception:                                                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        </span><span style="color:#75715e">/* some unhandlable exception occurred */</span><span style="color:#75715e">                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  1:    ori TESTNUM, TESTNUM, 1337;                                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  write_tohost:                                                         \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        sw TESTNUM, tohost, t5;                                         \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        j write_tohost;                                                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">reset_vector:                                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        RISCV_MULTICORE_DISABLE;                                        \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        INIT_SATP;                                                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        INIT_PMP;                                                       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        DELEGATE_NO_TRAPS;                                              \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        li TESTNUM, 0;                                                  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        la t0, trap_vector;                                             \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        csrw mtvec, t0;                                                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        CHECK_XLEN;                                                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        </span><span style="color:#75715e">/* if an stvec_handler is defined, delegate exceptions to it */</span><span style="color:#75715e"> \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        la t0, stvec_handler;                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        beqz t0, 1f;                                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        csrw stvec, t0;                                                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        li t0, (1 &lt;&lt; CAUSE_LOAD_PAGE_FAULT) |                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">               (1 &lt;&lt; CAUSE_STORE_PAGE_FAULT) |                          \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">               (1 &lt;&lt; CAUSE_FETCH_PAGE_FAULT) |                          \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">               (1 &lt;&lt; CAUSE_MISALIGNED_FETCH) |                          \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">               (1 &lt;&lt; CAUSE_USER_ECALL) |                                \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">               (1 &lt;&lt; CAUSE_BREAKPOINT);                                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        csrw medeleg, t0;                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        csrr t1, medeleg;                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        bne t0, t1, other_exception;                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1:      csrwi mstatus, 0;                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        init;                                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        EXTRA_INIT;                                                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        EXTRA_INIT_TIMER;                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        la t0, 1f;                                                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        csrw mepc, t0;                                                  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        csrr a0, mhartid;                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        mret;                                                           \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1:
+</span></span></span></code></pre></div><blockquote>
+<p><em>Note:</em> The <code>1:</code> label is known as a <strong>local symbol name</strong> which, according to the <a href="http://tigcc.ticalc.org/doc/gnuasm.html#SEC46"><code>gas</code> documentation</a>, are:</p>
+<ul>
+<li>defined by writing a label of the form N: (where N represents any positive integer) and are</li>
+<li>referred to writing <code>Nb</code> or <code>Nf</code>, using the same number as when the label was defined with <code>Nb</code> being the most recent <strong>previous</strong> one and <code>Nf</code> the <strong>following</strong> definition (<code>b</code> standing for <em>backwards</em> and <code>f</code> for <em>forwards</em>)</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p><strong><code>RVTEST_CODE_END</code></strong>: expands to <code>unimp</code> and should not be reached due to the <code>ecall</code> at the end of a test pass and fail (see below!)</p>
+</li>
+<li>
+<p><strong><code>RVDATA_BEGIN</code></strong> and <strong><code>RVDATA_END</code></strong>: set up the characteristics of the data section:</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_DATA_BEGIN                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        EXTRA_DATA                                                      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .pushsection .tohost,&#34;aw&#34;,@progbits;                            \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .align 6; .global tohost; tohost: .dword 0;                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .align 6; .global fromhost; fromhost: .dword 0;                 \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .popsection;                                                    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        .align 4; .global begin_signature; begin_signature:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_DATA_END .align 4; .global end_signature; end_signature:
+</span></span></span></code></pre></div><blockquote>
+<p><em>Note:</em>  Look at what happens here</p>
+</blockquote>
+<ul>
+<li>
+<p><strong><code>TESTNUM</code></strong>: defines the register that holds the current number of the test, in this case <code>gp</code>/<code>x3</code></p>
+</li>
+<li>
+<p><strong><code>RVTEST_PASS</code></strong> and <strong><code>RVTEST_FAIL</code></strong>: define the logic behind the</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_PASS                                                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        fence;                                                          \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        li TESTNUM, 1;                                                  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        ecall
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define TESTNUM gp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_FAIL                                                     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        fence;                                                          \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">1:      beqz TESTNUM, 1b;                                               \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        sll TESTNUM, TESTNUM, 1;                                        \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        or TESTNUM, TESTNUM, 1;                                         \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        ecall
+</span></span></span></code></pre></div><h3 id="test-macros">Test macros</h3>
+<p>The macros starting with <code>TEST_</code> are defined in <code>isa/macros/scalar/test_macros.h</code>:</p>
+<ul>
+<li><strong><code>TEST_CASE</code></strong>: the base framework of all other tests, holding the test number, the register to test, the expected value that will be stored in <code>x7</code> and additional code can be specified.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define TEST_CASE( testnum, testreg, correctval, code... ) \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">test_ ## testnum: \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    code; \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    li  x7, MASK_XLEN(correctval); \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    li  TESTNUM, testnum; \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    bne testreg, x7, fail;
+</span></span></span></code></pre></div><ul>
+<li><strong><code>TEST_PASSFAIL</code></strong>: a wrapper around the previous test/fail logics.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define TEST_PASSFAIL \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        bne x0, TESTNUM, pass; \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">fail: \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        RVTEST_FAIL; \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">pass: \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        RVTEST_PASS \
+</span></span></span></code></pre></div><ul>
+<li>Other macros are more instruction-specific such as:
+<ul>
+<li><code>TEST_IMM_*</code> for immediate values</li>
+<li><code>TEST_R_*</code> for one register</li>
+<li><code>TEST_RR_*</code> for two register</li>
+<li><code>TEST_LD_*</code> for loads</li>
+<li><code>TEST_ST_*</code> for stores</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/riscv/">
+                riscv
+              </a>
+            </div>
+            
+            <div class="post-tags">
+              <a href="/tags/rocket/">
+                rocket
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2023-02-03-rocket_adding_a_unit_test/">Adding a unit test in Rocket</a></li>
+    
+    <li><a href="/posts/2023-02-01-rocket_unit_tests/">Rocket unit tests</a></li>
+    
+    <li><a href="/posts/2023-01-27-rocket_installation/">Rocket chip building</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

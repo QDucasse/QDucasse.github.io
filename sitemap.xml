@@ -2,28 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://qducasse.github.io/posts/2023-02-03-rocket_adding_a_unit_test/</loc>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://qducasse.github.io/categories/</loc>
-    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/categories/exploration/</loc>
-    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/</loc>
-    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/posts/</loc>
-    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/riscv/</loc>
-    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/rocket/</loc>
-    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qducasse.github.io/posts/2023-02-01-rocket_unit_tests/</loc>
-    <lastmod>2023-02-01T00:00:00+00:00</lastmod>
+    <loc>https://qducasse.github.io/posts/2023-02-02-rocket_inspecting_a_test/</loc>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/tags/</loc>
+    <lastmod>2023-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://qducasse.github.io/posts/2023-02-01-rocket_unit_tests/</loc>
     <lastmod>2023-02-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qducasse.github.io/categories/guide/</loc>
