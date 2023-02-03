@@ -129,27 +129,14 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
 <h2 id="types-and-structures-of-tests">Types and structures of tests</h2>
 <p>First of all, <code>riscv-tests</code> implements two types of tests, either simple unit tests per instruction (modulo the TVM and environment) that are implemented through direct assembly and macros or benchmarks that depends on more complex C files. The first are located in the <code>riscv-tests/isa</code> directory while the latter are in <code>riscv-tests/benchmarks</code></p>
 <p>The structure of the <code>isa</code> tests all use the <a href="https://github.com/riscv-software-src/riscv-tests/blob/master/isa/macros/scalar/test_macros.h"><code>test_macros.h</code></a> header that defines assembly stubs that can be used in the unit tests. Along with this file, each environment adds its <code>riscv_test.h</code> header and encodings defined in the <a href="https://github.com/riscv/riscv-test-env"><code>riscv-test-env</code></a> repository. Along with this environment are the linker scripts and eventual <code>vm</code> to simulate a virtual memory system.</p>
-<p>Let&rsquo;s look at the <code>isa/rv64ui/addi.S</code> unit test:</p>
+<p>Let&rsquo;s look at the <code>isa/rv64ui/simple.S</code> unit test:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;riscv_test.h&#34;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;test_macros.h&#34;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>RVTEST_RV64U
 </span></span><span style="display:flex;"><span>RVTEST_CODE_BEGIN
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">TEST_IMM_OP</span>( <span style="color:#ae81ff">2</span>,  addi, <span style="color:#ae81ff">0x00000000</span>, <span style="color:#ae81ff">0x00000000</span>, <span style="color:#ae81ff">0x000</span> );
-</span></span><span style="display:flex;"><span>  [...]
-</span></span><span style="display:flex;"><span>  TEST_IMM_OP( <span style="color:#ae81ff">16</span>, addi, <span style="color:#ae81ff">0x0000000080000000</span>, <span style="color:#ae81ff">0x7fffffff</span>, <span style="color:#ae81ff">0x001</span> );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  TEST_IMM_SRC1_EQ_DEST( <span style="color:#ae81ff">17</span>, addi, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">11</span> );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  TEST_IMM_DEST_BYPASS( <span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">0</span>, addi, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">11</span> );
-</span></span><span style="display:flex;"><span>  [...]
-</span></span><span style="display:flex;"><span>  TEST_IMM_SRC1_BYPASS( <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">2</span>, addi, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">13</span>,  <span style="color:#ae81ff">9</span> );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  TEST_IMM_ZEROSRC1( <span style="color:#ae81ff">24</span>, addi, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">32</span> );
-</span></span><span style="display:flex;"><span>  TEST_IMM_ZERODEST( <span style="color:#ae81ff">25</span>, addi, <span style="color:#ae81ff">33</span>, <span style="color:#ae81ff">50</span> );
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  TEST_PASSFAIL
+</span></span><span style="display:flex;"><span>RVTEST_PASS
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>RVTEST_CODE_END
 </span></span><span style="display:flex;"><span>
@@ -262,7 +249,7 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
 <p><strong><code>RVTEST_CODE_END</code></strong>: expands to <code>unimp</code> and should not be reached due to the <code>ecall</code> at the end of a test pass and fail (see below!)</p>
 </li>
 <li>
-<p><strong><code>RVDATA_BEGIN</code></strong> and <strong><code>RVDATA_END</code></strong>: set up the characteristics of the data section:</p>
+<p><strong><code>RVDATA_BEGIN</code></strong> and <strong><code>RVDATA_END</code></strong>: test the output data with a signature</p>
 </li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define RVTEST_DATA_BEGIN                                               \
@@ -328,6 +315,121 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
 </ul>
 </li>
 </ul>
+<h3 id="compiling-a-test">Compiling a test</h3>
+<p>To compile an ISA test from the suite, the following <code>make</code> commands produces both the binary and the dump:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make rv64ui-p-addi.dump
+</span></span></code></pre></div><blockquote>
+<p><em>Note:</em> The format is <code>[test family]-[TVM type]-[test name]</code></p>
+</blockquote>
+<p>The dump of the <code>simple</code> test presented earlier is the following, from which the different macros presented can be found expanded:</p>
+<pre tabindex="0"><code class="language-dump" data-lang="dump">rv64ui-p-simple:     file format elf64-littleriscv
+
+
+Disassembly of section .text.init:
+
+0000000080000000 &lt;_start&gt;:
+    80000000:	0480006f          	j	80000048 &lt;reset_vector&gt;
+
+0000000080000004 &lt;trap_vector&gt;:
+    80000004:	34202f73          	csrr	t5,mcause
+    80000008:	00800f93          	li	t6,8
+    8000000c:	03ff0863          	beq	t5,t6,8000003c &lt;write_tohost&gt;
+    80000010:	00900f93          	li	t6,9
+    80000014:	03ff0463          	beq	t5,t6,8000003c &lt;write_tohost&gt;
+    80000018:	00b00f93          	li	t6,11
+    8000001c:	03ff0063          	beq	t5,t6,8000003c &lt;write_tohost&gt;
+    80000020:	00000f13          	li	t5,0
+    80000024:	000f0463          	beqz	t5,8000002c &lt;trap_vector+0x28&gt;
+    80000028:	000f0067          	jr	t5
+    8000002c:	34202f73          	csrr	t5,mcause
+    80000030:	000f5463          	bgez	t5,80000038 &lt;handle_exception&gt;
+    80000034:	0040006f          	j	80000038 &lt;handle_exception&gt;
+
+0000000080000038 &lt;handle_exception&gt;:
+    80000038:	5391e193          	ori	gp,gp,1337
+
+000000008000003c &lt;write_tohost&gt;:
+    8000003c:	00001f17          	auipc	t5,0x1
+    80000040:	fc3f2223          	sw	gp,-60(t5) # 80001000 &lt;tohost&gt;
+    80000044:	ff9ff06f          	j	8000003c &lt;write_tohost&gt;
+
+0000000080000048 &lt;reset_vector&gt;:
+    80000048:	f1402573          	csrr	a0,mhartid
+    8000004c:	00051063          	bnez	a0,8000004c &lt;reset_vector+0x4&gt;
+    80000050:	00000297          	auipc	t0,0x0
+    80000054:	01028293          	addi	t0,t0,16 # 80000060 &lt;reset_vector+0x18&gt;
+    80000058:	30529073          	csrw	mtvec,t0
+    8000005c:	18005073          	csrwi	satp,0
+    80000060:	00000297          	auipc	t0,0x0
+    80000064:	01c28293          	addi	t0,t0,28 # 8000007c &lt;reset_vector+0x34&gt;
+    80000068:	30529073          	csrw	mtvec,t0
+    8000006c:	fff00293          	li	t0,-1
+    80000070:	3b029073          	csrw	pmpaddr0,t0
+    80000074:	01f00293          	li	t0,31
+    80000078:	3a029073          	csrw	pmpcfg0,t0
+    8000007c:	00000297          	auipc	t0,0x0
+    80000080:	01828293          	addi	t0,t0,24 # 80000094 &lt;reset_vector+0x4c&gt;
+    80000084:	30529073          	csrw	mtvec,t0
+    80000088:	30205073          	csrwi	medeleg,0
+    8000008c:	30305073          	csrwi	mideleg,0
+    80000090:	30405073          	csrwi	mie,0
+    80000094:	00000193          	li	gp,0
+    80000098:	00000297          	auipc	t0,0x0
+    8000009c:	f6c28293          	addi	t0,t0,-148 # 80000004 &lt;trap_vector&gt;
+    800000a0:	30529073          	csrw	mtvec,t0
+    800000a4:	00100513          	li	a0,1
+    800000a8:	01f51513          	slli	a0,a0,0x1f
+    800000ac:	00055863          	bgez	a0,800000bc &lt;reset_vector+0x74&gt;
+    800000b0:	0ff0000f          	fence
+    800000b4:	00100193          	li	gp,1
+    800000b8:	00000073          	ecall
+    800000bc:	00000293          	li	t0,0
+    800000c0:	00028e63          	beqz	t0,800000dc &lt;reset_vector+0x94&gt;
+    800000c4:	10529073          	csrw	stvec,t0
+    800000c8:	0000b2b7          	lui	t0,0xb
+    800000cc:	1092829b          	addiw	t0,t0,265
+    800000d0:	30229073          	csrw	medeleg,t0
+    800000d4:	30202373          	csrr	t1,medeleg
+    800000d8:	f66290e3          	bne	t0,t1,80000038 &lt;handle_exception&gt;
+    800000dc:	30005073          	csrwi	mstatus,0
+    800000e0:	00000297          	auipc	t0,0x0
+    800000e4:	01428293          	addi	t0,t0,20 # 800000f4 &lt;reset_vector+0xac&gt;
+    800000e8:	34129073          	csrw	mepc,t0
+    800000ec:	f1402573          	csrr	a0,mhartid
+    800000f0:	30200073          	mret
+    800000f4:	0ff0000f          	fence
+    800000f8:	00100193          	li	gp,1
+    800000fc:	00000073          	ecall
+    80000100:	c0001073          	unimp
+    80000104:	0000                	unimp
+    80000106:	0000                	unimp
+    80000108:	0000                	unimp
+    8000010a:	0000                	unimp
+    8000010c:	0000                	unimp
+    8000010e:	0000                	unimp
+    80000110:	0000                	unimp
+    80000112:	0000                	unimp
+    80000114:	0000                	unimp
+    80000116:	0000                	unimp
+    80000118:	0000                	unimp
+    8000011a:	0000                	unimp
+    8000011c:	0000                	unimp
+    8000011e:	0000                	unimp
+    80000120:	0000                	unimp
+    80000122:	0000                	unimp
+    80000124:	0000                	unimp
+    80000126:	0000                	unimp
+    80000128:	0000                	unimp
+    8000012a:	0000                	unimp
+    8000012c:	0000                	unimp
+    8000012e:	0000                	unimp
+    80000130:	0000                	unimp
+    80000132:	0000                	unimp
+    80000134:	0000                	unimp
+    80000136:	0000                	unimp
+    80000138:	0000                	unimp
+    8000013a:	0000                	unimp
+</code></pre><p>In the next part, we will see how we can add a custom test and execute it through Rocket&rsquo;s emulator!</p>
 
         </div>
 
@@ -361,7 +463,7 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
   <h3>Related Posts</h3>
   <ul>
     
-    <li><a href="/posts/2023-02-03-rocket_adding_a_unit_test/">Adding a unit test in Rocket</a></li>
+    <li><a href="/posts/2023-02-04-rocket_adding_a_unit_test/">Adding a unit test in Rocket</a></li>
     
     <li><a href="/posts/2023-02-01-rocket_unit_tests/">Rocket unit tests</a></li>
     

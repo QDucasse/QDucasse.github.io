@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.97.3" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Quentin Ducasse" />
+  <meta property="og:url" content="https://qducasse.github.io/posts/2023-02-04-rocket_adding_a_unit_test/" />
+  <link rel="canonical" href="https://qducasse.github.io/posts/2023-02-04-rocket_adding_a_unit_test/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/qducasse.github.io"
+      },
+      "articleSection" : "posts",
+      "name" : "Adding a unit test in Rocket",
+      "headline" : "Adding a unit test in Rocket",
+      "description" : "Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.\nThose tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the case of Rocket) and installed in \/path\/to\/toolchain\/riscv64-unknown-elf\/share\/riscv-tests\/.",
+      "inLanguage" : "en-US",
+      "author" : "Quentin Ducasse",
+      "creator" : "Quentin Ducasse",
+      "publisher": "Quentin Ducasse",
+      "accountablePerson" : "Quentin Ducasse",
+      "copyrightHolder" : "Quentin Ducasse",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-02-03 00:00:00 \u002b0000 UTC",
+      "dateModified" : "2023-02-03 00:00:00 \u002b0000 UTC",
+      "url" : "https:\/\/qducasse.github.io\/posts\/2023-02-04-rocket_adding_a_unit_test\/",
+      "keywords" : [ "riscv","rocket", ]
+  }
+</script>
+<title>Adding a unit test in Rocket</title>
+  <meta property="og:title" content="Adding a unit test in Rocket" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.
+Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the case of Rocket) and installed in /path/to/toolchain/riscv64-unknown-elf/share/riscv-tests/." />
+  <meta name="description" content="Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.
+Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the case of Rocket) and installed in /path/to/toolchain/riscv64-unknown-elf/share/riscv-tests/." />
+  <meta property="og:locale" content="en" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:1000px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Lectern">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Lectern</a
+    >
+  </div>
+  <div class="header-subtitle">Notes and Memos, Quentin DUCASSE</div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+  <div class="header-item">
+    <a href="https://github.com/QDucasse" target="_blank">Github</a>
+  </div>
+  
+  <div class="header-item">
+    <a href="https://twitter.com/quentin_ducasse" target="_blank">Twitter</a>
+  </div>
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Adding a unit test in Rocket</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-02-03 00:00:00 UTC">
+                03 Feb 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="">@Quentin Ducasse</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="unit-test-workflow-recap">Unit test workflow recap</h2>
+<p>As presented in a previous post, the Rocket framework for unit tests revolves around the <a href="https://github.com/riscv-software-src/riscv-tests">riscv-tests</a> repository. Those tests are separated by the extensions they use and the <em>Test Virtual Machine (TVM)</em> they should be run on. Simple macros expand the utilities and encodings are added to define instructions, <em>Control Status Registers (CSRs)</em>, etc.</p>
+<p>Those tests are compiled using the RISC-V GNU toolchain, (<a href="https://github.com/chipsalliance/rocket-tools">rocket-tools</a> in the case of Rocket) and installed in <code>/path/to/toolchain/riscv64-unknown-elf/share/riscv-tests/</code>. Both the binary and dump files are available in <code>benchmarks</code> and <code>isa</code>.</p>
+<p>This means that all RISC-V tests are directly available in a compiled format with their dump to look at, use and build on. However, this also means that adding a unit test in this framework to, let&rsquo;s say, add an instruction or a register, requires the developer to modify the complete toolchain.</p>
+<h2 id="unit-test-workaround">Unit test workaround</h2>
+<p>To circumvent the need to change the entire toolchain to test additions to the binary, authors of <a href="https://ieeexplore.ieee.org/document/8714980">FIXER</a> used the toolchain to generate a binary that they then tagged and expanded with the direct binary corresponding of their custom instruction. For example, they add <em>Control Flow Integrity (CFI)</em> mechanisms to check forward-edge and backward-edge control flow through tags:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span> () {          <span style="color:#66d9ef">void</span> myFunc() {
+</span></span><span style="display:flex;"><span>    ...                     ...
+</span></span><span style="display:flex;"><span>    CFI_CALL                CFI_RET
+</span></span><span style="display:flex;"><span>    myFunc();               <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    ...                 }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>That then get directly expanded to the binary representation of the instruction. They use the <code>custom</code> instructions already available in the Rocket decoder and usable through their <a href="https://github.com/chipsalliance/rocket-chip/blob/master/src/main/scala/scie/SCIE.scala"><em>Simple Custom Instruction Extension (SCIE)</em></a>. The expanded assembly looks like the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#75715e"># CFI_CALL               # CFI_RET    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">auipc</span> <span style="color:#66d9ef">t0</span>,<span style="color:#ae81ff">0</span>               <span style="color:#66d9ef">.word</span> <span style="color:#ae81ff">0x0200428b</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">add</span> <span style="color:#66d9ef">t0</span>,<span style="color:#66d9ef">t0</span>,<span style="color:#ae81ff">14</span>             <span style="color:#66d9ef">bne</span> <span style="color:#66d9ef">t0</span>,<span style="color:#66d9ef">ra</span>,<span style="color:#66d9ef">_cfi_error</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">.word</span> <span style="color:#ae81ff">0x0002a00b</span>         <span style="color:#66d9ef">jr</span> <span style="color:#66d9ef">ra</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">call</span> <span style="color:#66d9ef">myFun</span>
+</span></span></code></pre></div><h2 id="writing-our-own-unit-test">Writing our own unit test</h2>
+<p>Using the same workaround as the FIXER authors, we will try to write and compile a test with a fictive instruction (we will look at how we can implement the instruction in the actual core later on). Starting with the <code>simple.S</code> file, we can build a simple test containing our instruction and the macro to pass!</p>
+<ol>
+<li>Add a subdirectory <code>custom</code> in <code>isa</code></li>
+<li>Add our new <code>custom.S</code> test</li>
+<li>Add the corresponding <code>Makefrag</code></li>
+<li>Extend the <code>isa/Makefile</code> with the compile framework for our directory</li>
+</ol>
+<p>1-</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cd $ROCKET_ROOT/rocket-tools/riscv-tests/isa
+</span></span><span style="display:flex;"><span>$ mkdir custom
+</span></span></code></pre></div><p>2-</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$  cp rv64ui/simple.S custom/unknown.S
+</span></span></code></pre></div><p>Modify the test as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#=======================================================================
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#       Unknown instruction test
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#-----------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;riscv_test.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;test_macros.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>RVTEST_RV64U
+</span></span><span style="display:flex;"><span>RVTEST_CODE_BEGIN
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_2:
+</span></span><span style="display:flex;"><span>  .word <span style="color:#ae81ff">0x0002a00b</span> 
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  RVTEST_PASS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RVTEST_CODE_END
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  .data
+</span></span><span style="display:flex;"><span>RVTEST_DATA_BEGIN
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  TEST_DATA
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RVTEST_DATA_END
+</span></span></code></pre></div><p>3-</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ touch custom/Makefrag
+</span></span></code></pre></div><p>Modify the makefrag as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#75715e">#=======================================================================
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Makefrag for custom tests
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#-----------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>custom_sc_tests <span style="color:#f92672">=</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	unknown <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>
+</span></span><span style="display:flex;"><span>custom_p_tests <span style="color:#f92672">=</span> <span style="color:#66d9ef">$(</span>addprefix custom-p-, <span style="color:#66d9ef">$(</span>custom_sc_tests<span style="color:#66d9ef">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>spike_tests <span style="color:#f92672">+=</span> <span style="color:#66d9ef">$(</span>custom_p_tests<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>4-</p>
+<p>In <code>isa/Makefile</code>, add the following line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-make" data-lang="make"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">$(</span>eval <span style="color:#66d9ef">$(</span>call compile_template,rv64si,-march=rv64g -mabi=lp64<span style="color:#66d9ef">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">$(</span>eval <span style="color:#66d9ef">$(</span>call compile_template,rv64mi,-march=rv64g -mabi=lp64<span style="color:#66d9ef">))</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">$(</span>eval <span style="color:#66d9ef">$(</span>call compile_template,custom,-march=rv64g -mabi=lp64<span style="color:#66d9ef">))</span>  <span style="color:#960050;background-color:#1e0010">&lt;&lt;&lt;===</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">endif</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">...</span>
+</span></span></code></pre></div><p>We can now compile our test from the <code>isa</code> directory with :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ make custom-p-unknown.dump
+</span></span></code></pre></div><p>Reading the dump, we can look at our &ldquo;fake&rdquo; instruction:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat custom-p-unknown.dump
+</span></span><span style="display:flex;"><span>custom-p-unknown:     file format elf64-littleriscv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Disassembly of section .text.init:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0000000080000000</span> &lt;_start&gt;:
+</span></span><span style="display:flex;"><span>    80000000:	0480006f          	j	<span style="color:#ae81ff">80000048</span> &lt;reset_vector&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0000000080000004</span> &lt;trap_vector&gt;:
+</span></span><span style="display:flex;"><span>    80000004:	34202f73          	csrr	t5,mcause
+</span></span><span style="display:flex;"><span>    80000008:	00800f93          	li	t6,8
+</span></span><span style="display:flex;"><span>    8000000c:	03ff0863          	beq	t5,t6,8000003c &lt;write_tohost&gt;
+</span></span><span style="display:flex;"><span>    80000010:	00900f93          	li	t6,9
+</span></span><span style="display:flex;"><span>    80000014:	03ff0463          	beq	t5,t6,8000003c &lt;write_tohost&gt;
+</span></span><span style="display:flex;"><span>    80000018:	00b00f93          	li	t6,11
+</span></span><span style="display:flex;"><span>    8000001c:	03ff0063          	beq	t5,t6,8000003c &lt;write_tohost&gt;
+</span></span><span style="display:flex;"><span>    80000020:	00000f13          	li	t5,0
+</span></span><span style="display:flex;"><span>    80000024:	000f0463          	beqz	t5,8000002c &lt;trap_vector+0x28&gt;
+</span></span><span style="display:flex;"><span>    80000028:	000f0067          	jr	t5
+</span></span><span style="display:flex;"><span>    8000002c:	34202f73          	csrr	t5,mcause
+</span></span><span style="display:flex;"><span>    80000030:	000f5463          	bgez	t5,80000038 &lt;handle_exception&gt;
+</span></span><span style="display:flex;"><span>    80000034:	0040006f          	j	<span style="color:#ae81ff">80000038</span> &lt;handle_exception&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0000000080000038</span> &lt;handle_exception&gt;:
+</span></span><span style="display:flex;"><span>    80000038:	5391e193          	ori	gp,gp,1337
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>000000008000003c &lt;write_tohost&gt;:
+</span></span><span style="display:flex;"><span>    8000003c:	00001f17          	auipc	t5,0x1
+</span></span><span style="display:flex;"><span>    80000040:	fc3f2223          	sw	gp,-60<span style="color:#f92672">(</span>t5<span style="color:#f92672">)</span> <span style="color:#75715e"># 80001000 &lt;tohost&gt;</span>
+</span></span><span style="display:flex;"><span>    80000044:	ff9ff06f          	j	8000003c &lt;write_tohost&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0000000080000048</span> &lt;reset_vector&gt;:
+</span></span><span style="display:flex;"><span>    80000048:	f1402573          	csrr	a0,mhartid
+</span></span><span style="display:flex;"><span>    8000004c:	<span style="color:#ae81ff">00051063</span>          	bnez	a0,8000004c &lt;reset_vector+0x4&gt;
+</span></span><span style="display:flex;"><span>    80000050:	<span style="color:#ae81ff">00000297</span>          	auipc	t0,0x0
+</span></span><span style="display:flex;"><span>    80000054:	<span style="color:#ae81ff">01028293</span>          	addi	t0,t0,16 <span style="color:#75715e"># 80000060 &lt;reset_vector+0x18&gt;</span>
+</span></span><span style="display:flex;"><span>    80000058:	<span style="color:#ae81ff">30529073</span>          	csrw	mtvec,t0
+</span></span><span style="display:flex;"><span>    8000005c:	<span style="color:#ae81ff">18005073</span>          	csrwi	satp,0
+</span></span><span style="display:flex;"><span>    80000060:	<span style="color:#ae81ff">00000297</span>          	auipc	t0,0x0
+</span></span><span style="display:flex;"><span>    80000064:	01c28293          	addi	t0,t0,28 <span style="color:#75715e"># 8000007c &lt;reset_vector+0x34&gt;</span>
+</span></span><span style="display:flex;"><span>    80000068:	<span style="color:#ae81ff">30529073</span>          	csrw	mtvec,t0
+</span></span><span style="display:flex;"><span>    8000006c:	fff00293          	li	t0,-1
+</span></span><span style="display:flex;"><span>    80000070:	3b029073          	csrw	pmpaddr0,t0
+</span></span><span style="display:flex;"><span>    80000074:	01f00293          	li	t0,31
+</span></span><span style="display:flex;"><span>    80000078:	3a029073          	csrw	pmpcfg0,t0
+</span></span><span style="display:flex;"><span>    8000007c:	<span style="color:#ae81ff">00000297</span>          	auipc	t0,0x0
+</span></span><span style="display:flex;"><span>    80000080:	<span style="color:#ae81ff">01828293</span>          	addi	t0,t0,24 <span style="color:#75715e"># 80000094 &lt;reset_vector+0x4c&gt;</span>
+</span></span><span style="display:flex;"><span>    80000084:	<span style="color:#ae81ff">30529073</span>          	csrw	mtvec,t0
+</span></span><span style="display:flex;"><span>    80000088:	<span style="color:#ae81ff">30205073</span>          	csrwi	medeleg,0
+</span></span><span style="display:flex;"><span>    8000008c:	<span style="color:#ae81ff">30305073</span>          	csrwi	mideleg,0
+</span></span><span style="display:flex;"><span>    80000090:	<span style="color:#ae81ff">30405073</span>          	csrwi	mie,0
+</span></span><span style="display:flex;"><span>    80000094:	<span style="color:#ae81ff">00000193</span>          	li	gp,0
+</span></span><span style="display:flex;"><span>    80000098:	<span style="color:#ae81ff">00000297</span>          	auipc	t0,0x0
+</span></span><span style="display:flex;"><span>    8000009c:	f6c28293          	addi	t0,t0,-148 <span style="color:#75715e"># 80000004 &lt;trap_vector&gt;</span>
+</span></span><span style="display:flex;"><span>    800000a0:	<span style="color:#ae81ff">30529073</span>          	csrw	mtvec,t0
+</span></span><span style="display:flex;"><span>    800000a4:	<span style="color:#ae81ff">00100513</span>          	li	a0,1
+</span></span><span style="display:flex;"><span>    800000a8:	01f51513          	slli	a0,a0,0x1f
+</span></span><span style="display:flex;"><span>    800000ac:	<span style="color:#ae81ff">00055863</span>          	bgez	a0,800000bc &lt;reset_vector+0x74&gt;
+</span></span><span style="display:flex;"><span>    800000b0:	0ff0000f          	fence
+</span></span><span style="display:flex;"><span>    800000b4:	<span style="color:#ae81ff">00100193</span>          	li	gp,1
+</span></span><span style="display:flex;"><span>    800000b8:	<span style="color:#ae81ff">00000073</span>          	ecall
+</span></span><span style="display:flex;"><span>    800000bc:	<span style="color:#ae81ff">00000293</span>          	li	t0,0
+</span></span><span style="display:flex;"><span>    800000c0:	00028e63          	beqz	t0,800000dc &lt;reset_vector+0x94&gt;
+</span></span><span style="display:flex;"><span>    800000c4:	<span style="color:#ae81ff">10529073</span>          	csrw	stvec,t0
+</span></span><span style="display:flex;"><span>    800000c8:	0000b2b7          	lui	t0,0xb
+</span></span><span style="display:flex;"><span>    800000cc:	1092829b          	addiw	t0,t0,265
+</span></span><span style="display:flex;"><span>    800000d0:	<span style="color:#ae81ff">30229073</span>          	csrw	medeleg,t0
+</span></span><span style="display:flex;"><span>    800000d4:	<span style="color:#ae81ff">30202373</span>          	csrr	t1,medeleg
+</span></span><span style="display:flex;"><span>    800000d8:	f66290e3          	bne	t0,t1,80000038 &lt;handle_exception&gt;
+</span></span><span style="display:flex;"><span>    800000dc:	<span style="color:#ae81ff">30005073</span>          	csrwi	mstatus,0
+</span></span><span style="display:flex;"><span>    800000e0:	<span style="color:#ae81ff">00000297</span>          	auipc	t0,0x0
+</span></span><span style="display:flex;"><span>    800000e4:	<span style="color:#ae81ff">01428293</span>          	addi	t0,t0,20 <span style="color:#75715e"># 800000f4 &lt;reset_vector+0xac&gt;</span>
+</span></span><span style="display:flex;"><span>    800000e8:	<span style="color:#ae81ff">34129073</span>          	csrw	mepc,t0
+</span></span><span style="display:flex;"><span>    800000ec:	f1402573          	csrr	a0,mhartid
+</span></span><span style="display:flex;"><span>    800000f0:	<span style="color:#ae81ff">30200073</span>          	mret
+</span></span><span style="display:flex;"><span>    800000f4:	0ff0000f          	fence
+</span></span><span style="display:flex;"><span>    800000f8:	<span style="color:#ae81ff">00100193</span>          	li	gp,1
+</span></span><span style="display:flex;"><span>    800000fc:	<span style="color:#ae81ff">00000073</span>          	ecall
+</span></span><span style="display:flex;"><span>    80000100:	c0001073          	unimp
+</span></span><span style="display:flex;"><span>    80000104:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000106:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000108:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000010a:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000010c:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000010e:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000110:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000112:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000114:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000116:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000118:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000011a:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000011c:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000011e:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000120:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000122:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000124:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000126:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000128:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000012a:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000012c:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000012e:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000130:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000132:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000134:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000136:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    80000138:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span><span style="display:flex;"><span>    8000013a:	<span style="color:#ae81ff">0000</span>                	unimp
+</span></span></code></pre></div><p>TODO: Install the test
+TODO: Test on the emulator</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/riscv/">
+                riscv
+              </a>
+            </div>
+            
+            <div class="post-tags">
+              <a href="/tags/rocket/">
+                rocket
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2023-02-02-rocket_inspecting_a_test/">Rocket test macros</a></li>
+    
+    <li><a href="/posts/2023-02-01-rocket_unit_tests/">Rocket unit tests</a></li>
+    
+    <li><a href="/posts/2023-01-27-rocket_installation/">Rocket chip building</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
