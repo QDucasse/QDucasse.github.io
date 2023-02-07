@@ -20,7 +20,7 @@ The generated code is customizable by defining:</description>
     <item>
       <title>Adding a unit test in Rocket</title>
       <link>https://qducasse.github.io/posts/2023-02-04-rocket_adding_a_unit_test/</link>
-      <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://qducasse.github.io/posts/2023-02-04-rocket_adding_a_unit_test/</guid>
       <description>Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.
@@ -30,7 +30,7 @@ Those tests are compiled using the RISC-V GNU toolchain, (rocket-tools in the ca
     <item>
       <title>Rocket test macros</title>
       <link>https://qducasse.github.io/posts/2023-02-02-rocket_inspecting_a_test/</link>
-      <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 02 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://qducasse.github.io/posts/2023-02-02-rocket_inspecting_a_test/</guid>
       <description>Unit test workflow recap As presented in a previous post, the Rocket framework for unit tests revolves around the riscv-tests repository. Those tests are separated by the extensions they use and the Test Virtual Machine (TVM) they should be run on. Simple macros expand the utilities and encodings are added to define instructions, Control Status Registers (CSRs), etc.
