@@ -6,7 +6,18 @@
     <description>Recent content on Lectern</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 07 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rocket chip structure</title>
+      <link>https://qducasse.github.io/posts/2023-05-26-rocket_project_structure/</link>
+      <pubDate>Fri, 26 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/2023-05-26-rocket_project_structure/</guid>
+      <description>Rocket core structure and exploration The objective here is to get a feeling of how things are defined in the rocket chip generator. I will look at the files in src/main/scala/rocket for the latest release 1.6:
+Logic:
+ ALU.scala: Arithmetic logical unit - performs all base operations. AMOALU.scala: Atomic memory operation ALU - performs all atomic memory operations. Breakpoint.scala: Breakpoint utilities BTB.scala: Branch target buffer - predicts branch targets Decode.scala: Decoder - applies the bit patterns defined in IDecode Events.</description>
+    </item>
+    
     <item>
       <title>Running raw binary on Rocket&#39;s emulator</title>
       <link>https://qducasse.github.io/posts/2023-02-07-rocket_running_raw_binary/</link>
