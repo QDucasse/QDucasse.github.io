@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.97.3" />
@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Quentin Ducasse" />
-  <meta property="og:url" content="https://qducasse.github.io/" />
-  <link rel="canonical" href="https://qducasse.github.io/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
+  <meta property="og:url" content="https://qducasse.github.io/posts/2023-06-19-rocket_pmp/" />
+  <link rel="canonical" href="https://qducasse.github.io/posts/2023-06-19-rocket_pmp/" /><link rel="alternate" type="application/atom+xml" href="https://qducasse.github.ioindex.xml" title="Lectern">
 
   <script type="application/ld+json">
   {
@@ -18,10 +18,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/qducasse.github.io"
       },
-      "articleSection" : "",
-      "name" : "Lectern",
-      "headline" : "Lectern",
-      "description" : "Notes and Memos, Quentin DUCASSE",
+      "articleSection" : "posts",
+      "name" : "Rocket chip structure",
+      "headline" : "Rocket chip structure",
+      "description" : "Address checking in Rocket General address resolution Virtual Memory: (Chapter from [1]) In a CPU, pages of virtual memory are used by programs running on a computer. Virtual addresses are linked to corresponding physical addresses on the base of memory pages. A page table stored in memory (RAM) contains the links between virtual and physical addresses. This page table is unique for each running program on a computer through the program\u0026rsquo;s address space.",
       "inLanguage" : "en-US",
       "author" : "Quentin Ducasse",
       "creator" : "Quentin Ducasse",
@@ -31,15 +31,15 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-06-19 00:00:00 \u002b0000 UTC",
       "dateModified" : "2023-06-19 00:00:00 \u002b0000 UTC",
-      "url" : "https:\/\/qducasse.github.io\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/qducasse.github.io\/posts\/2023-06-19-rocket_pmp\/",
+      "keywords" : [ "riscv","rocket", ]
   }
 </script>
-<title>Lectern</title>
-  <meta property="og:title" content="Lectern" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Notes and Memos, Quentin DUCASSE" />
-  <meta name="description" content="Notes and Memos, Quentin DUCASSE" />
+<title>Rocket chip structure</title>
+  <meta property="og:title" content="Rocket chip structure" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Address checking in Rocket General address resolution Virtual Memory: (Chapter from [1]) In a CPU, pages of virtual memory are used by programs running on a computer. Virtual addresses are linked to corresponding physical addresses on the base of memory pages. A page table stored in memory (RAM) contains the links between virtual and physical addresses. This page table is unique for each running program on a computer through the program&amp;rsquo;s address space." />
+  <meta name="description" content="Address checking in Rocket General address resolution Virtual Memory: (Chapter from [1]) In a CPU, pages of virtual memory are used by programs running on a computer. Virtual addresses are linked to corresponding physical addresses on the base of memory pages. A page table stored in memory (RAM) contains the links between virtual and physical addresses. This page table is unique for each running program on a computer through the program&amp;rsquo;s address space." />
   <meta property="og:locale" content="en" /><meta property="og:image" content="" />
   
 
@@ -66,10 +66,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -94,319 +95,143 @@
 </div>
 <div class="header-line"></div>
 
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-06-19 00:00:00 UTC">Jun 19</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-06-19-rocket_pmp/">Rocket chip structure</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-05-26 00:00:00 UTC">May 26</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-05-26-rocket_project_structure-copy/">Rocket chip structure</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-02-07 00:00:00 UTC">Feb 07</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-02-07-rocket_running_raw_binary/">Running raw binary on Rocket&#39;s emulator</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-02-04 00:00:00 UTC">Feb 04</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-02-04-rocket_adding_a_unit_test/">Adding a unit test in Rocket</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-02-02 00:00:00 UTC">Feb 02</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-02-02-rocket_inspecting_a_test/">Rocket test macros</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-02-01 00:00:00 UTC">Feb 01</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-02-01-rocket_unit_tests/">Rocket unit tests</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-01-27 00:00:00 UTC">Jan 27</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2023-01-27-rocket_installation/">Rocket chip building</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          <section>
-            <h1 class="site-date-catalog">2022</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-28 00:00:00 UTC">Apr 28</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-28-nojitsu/">NoJITsu: Locking Down JavaScript Engines</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/article/"><strong>Article</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-26 00:00:00 UTC">Apr 26</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-26-jitguard/">JITGuard: JIT Compiler hardened with Intel SGX</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/article/"><strong>Article</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-24 00:00:00 UTC">Apr 24</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-24-v8_setup/">V8 RISC-V setup</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-12 00:00:00 UTC">Apr 12</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-12-rocket_instruction/">Adding instructions to the RISC-V Rocket core</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-04-04 00:00:00 UTC">Apr 04</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-04-04-trampolines/">Cogit runtime trampolines</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/exploration/"><strong>Exploration</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-03-23 00:00:00 UTC">Mar 23</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-03-23-riscv_toolchain/">RISC-V toolchain with custom glibc</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-03-10 00:00:00 UTC">Mar 10</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-03-10-jit_debug/">Debugging Pharo JIT code in gdb</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2022-02-21 00:00:00 UTC">Feb 21</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/2022-02-21-rv_immediate/">RISC-V load immediate pseudo-instruction</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/guide/"><strong>Guide</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Rocket chip structure</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-06-19 00:00:00 UTC">
+                19 Jun 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="">@Quentin Ducasse</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="address-checking-in-rocket">Address checking in Rocket</h2>
+<h3 id="general-address-resolution">General address resolution</h3>
+<p><strong>Virtual Memory:</strong> (<em>Chapter from <a href="https://safari.ethz.ch/projects_and_seminars/spring2022/lib/exe/fetch.php?media=pns_hwsw2022_lecture3_vm.pdf">[1]</a></em>) In a CPU, pages of virtual memory are used by programs running on a computer. Virtual addresses are linked to corresponding physical addresses on the base of memory pages. A <em>page table</em> stored in memory (RAM) contains the links between virtual and physical addresses. This page table is unique for each running program on a computer through the program&rsquo;s address space. The <strong>Memory Management Unit (MMU)</strong> is responsible for resolving address translation requests (one/core usually!). It typically contains:</p>
+<ul>
+<li><strong>Translation Lookaside Buffers (TLBs)</strong> that cache recently used virtual-to-physical translations (Page Table Entries or PTEs)</li>
+<li><strong>Page Table Walk Caches</strong> that offer fast access to the intermediate levels of large and multi-level page tables</li>
+<li><strong>Hardware Page Table Walker (PTW)</strong> that sequentially accesses the different levels of the page table to fetch the required PTE.</li>
+</ul>
+<blockquote>
+<p><em>Note:</em> In the case of a TLB miss, either the hardware performs the page walk and inserts the new entry in the TLB (<em>e.g.</em> x86 or the Rocket CPU!) or the operating system does the page walk and inserts the entry in the TLB (<em>e.g.</em> MIPS).</p>
+</blockquote>
+<p><strong>RISC-V Virtual Memory:</strong> RISC-V supports different virtual memory systems depending on the size of the address space, <em>e.g.</em> RV64 Sv39 supports 4KB base pages as well as 2MB and 1GB superpages. The page table is implemented as a multi-level radix tree (3-level page table in RV64 Sv39).</p>
+<h3 id="physical-memory-protection-unit">Physical Memory Protection unit</h3>
+<p>Physical Memory Protection (PMP) is a memory protection mechanism that allows <strong>M-mode</strong> to create and assign permissions to <strong>contiguous</strong> physical memory regions. The PMP is configured by M-mode through two sets of registers:</p>
+<ul>
+<li><code>pmpaddr0</code> - <code>pmpaddr15</code>: specify the physical addresses of PMP regions</li>
+<li><code>pmpcfg0</code> - <code>pmpcfg1</code>: contain the configurations (8-bits wide) for each PMP region</li>
+</ul>
+<p>Each <strong>configuration</strong> is packed in <strong>configuration registers</strong> (4 configs in one register) and follows the 8-bit wide format <code>L|00|A|X|W|R</code> with the fields representing:</p>
+<ul>
+<li><code>R.1</code>: Read permission</li>
+<li><code>W.1</code>: Write permission</li>
+<li><code>X.1</code>: Execution permission</li>
+<li><code>A.2</code>: Address matching type can be one of
+<ul>
+<li>0: <code>OFF</code>, no PMP checks</li>
+<li>1: <code>TOR</code>, top of range</li>
+<li>2: <code>NA4</code>, naturally aligned four-byte region</li>
+<li>3: <code>NAPOT</code>, naturally aligned power-of-two region (bigger than 8 bytes)</li>
+</ul>
+</li>
+<li><code>L.1</code>: Lock flag, indicating that writes to the configuration and associated address registers are ignored.</li>
+</ul>
+<p>Each <strong>address register</strong> contains the address (wow!) as <code>address[33:2]</code> for RV32 and <code>0000000000|address[55:2]</code> for RV64.</p>
+<blockquote>
+<p><em>Note:</em> Each field in <code>pmpcfgi</code> and <code>pmpaddri</code> follows the <strong><code>WARL</code></strong> behavior defined in the specification. The following behaviors are defined:</p>
+<ul>
+<li><em>Write Preserve Read Ignore (WPRI)</em>: read/write fields are reserved fo future use, software should ignore the values read from these fields and preserve the values in them when writing to other fields in the same registers.</li>
+<li><em>Write Legal Read Legal (WLRL)</em>: software should only write legal values to a field and should not assume that a read will return a legal value unless</li>
+<li><em>Write Any Read Legal (WARL)</em>: the field is only defined for a subset of bit encodings but any value can be written to the and a legal value is guaranteed to be read.</li>
+</ul>
+</blockquote>
+<h3 id="rocket-components">Rocket components</h3>
+<p><strong>Rocket MMU:</strong> The Rocket Memory Management Unit (MMU) <a href="https://www.researchgate.net/figure/Overview-of-the-MMU-in-Rocket-Chip-Generator_fig1_344276865">[3]</a> consists of L1 Instruction/Data TLB that are nearly identical (except for minor differences regarding access privileges to pages). The L2 TLB is shared among L1 I/DTLBs and can contain both instruction and data page translations. The Page Table Walker (PTW) incorporates the shared L2 TLB. It is connected with the L1 I/DTLBs through a round-robin arbiter that selects the target virtual address to be translated. The PTW uses a cache to store the non-leaf virtual-to-physical page translations.</p>
+<p><img src="/images/rocket_mmu_overview.png" alt=""></p>
+<p>Some qualifications on the different caches:</p>
+<ul>
+<li>
+<p><strong>L1 I/DTLB</strong>: Vector of Chisel <code>Reg</code> elements, positive-edge-triggered registers. Fully associative with a configurable number of entries and a Pseudo-LRU replacement policy. It responds with a hit/miss indication on the next cycle. It stores translations of pages and super pages.</p>
+</li>
+<li>
+<p><strong>L2 TLB</strong>: Chisel&rsquo;s <code>SyncReadMem/SeqMem</code> construct, which can be synthesized to FPGA Block RAM or ASIC SRAM. It creates a synchronous-read, synchronous-write memory with one read and one write port. It outputs to a register and holds intermediate stages until it informs of a hit/miss.</p>
+</li>
+<li>
+<p><strong>PTW Cache</strong>: Small fully-associative cache that stores the non-leaf virtual-to-physical pages.</p>
+</li>
+</ul>
+<p><strong>Rocket PMP:</strong> Cheang et al. <a href="https://arxiv.org/abs/2211.02179">[2]</a> formally verify the correctness of the <code>PMPChecker</code> methods itself. While their wider goal is to formally verify the <a href="https://keystone-enclave.org/">Keystone</a> enclave framework, they present this first step on the main PMP verification. They show the PMP rules are &ldquo;functionally correct&rdquo; but miss the interaction with TLB and PTW (and correct software implementation as well). Memory access may bypass the PMP rule if the address is cached in the TLB. To prevent this, most systems flush the TLB whenever it changes the local PMP policy.</p>
+<h3 id="references">References</h3>
+<p><a href="https://safari.ethz.ch/projects_and_seminars/spring2022/lib/exe/fetch.php?media=pns_hwsw2022_lecture3_vm.pdf">[1]</a> P&amp;S HW/SW Co-design, Lecture 3: Virtual Memory (II) by Konstantinos Kanellopoulos from ETH Zurich</p>
+<p><a href="https://arxiv.org/abs/2211.02179">[2]</a> Verifying RISC-V Physical Memory Protection,
+Kevin Cheang et al.</p>
+<p><a href="https://www.researchgate.net/figure/Overview-of-the-MMU-in-Rocket-Chip-Generator_fig1_344276865">[3]</a> Enabling Virtual Memory Research on RISC-V with a Configurable TLB Hierarchy for the Rocket Chip Generator, Charalampos et al.</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/riscv/">
+                riscv
+              </a>
+            </div>
+            
+            <div class="post-tags">
+              <a href="/tags/rocket/">
+                rocket
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/2023-05-26-rocket_project_structure-copy/">Rocket chip structure</a></li>
+    
+    <li><a href="/posts/2023-02-07-rocket_running_raw_binary/">Running raw binary on Rocket&#39;s emulator</a></li>
+    
+    <li><a href="/posts/2023-02-04-rocket_adding_a_unit_test/">Adding a unit test in Rocket</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -426,6 +251,8 @@
     
   
 </script>
+
+  
 
 </body>
 

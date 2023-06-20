@@ -6,13 +6,22 @@
     <description>Recent content in Posts on Lectern</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 26 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://qducasse.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rocket chip structure</title>
-      <link>https://qducasse.github.io/posts/2023-05-26-rocket_project_structure/</link>
+      <link>https://qducasse.github.io/posts/2023-06-19-rocket_pmp/</link>
+      <pubDate>Mon, 19 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://qducasse.github.io/posts/2023-06-19-rocket_pmp/</guid>
+      <description>Address checking in Rocket General address resolution Virtual Memory: (Chapter from [1]) In a CPU, pages of virtual memory are used by programs running on a computer. Virtual addresses are linked to corresponding physical addresses on the base of memory pages. A page table stored in memory (RAM) contains the links between virtual and physical addresses. This page table is unique for each running program on a computer through the program&amp;rsquo;s address space.</description>
+    </item>
+    
+    <item>
+      <title>Rocket chip structure</title>
+      <link>https://qducasse.github.io/posts/2023-05-26-rocket_project_structure-copy/</link>
       <pubDate>Fri, 26 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://qducasse.github.io/posts/2023-05-26-rocket_project_structure/</guid>
+      <guid>https://qducasse.github.io/posts/2023-05-26-rocket_project_structure-copy/</guid>
       <description>Rocket core structure and exploration The objective here is to get a feeling of how things are defined in the rocket chip generator. I will look at the files in src/main/scala/rocket for the latest release 1.6:
 Logic:
  ALU.scala: Arithmetic logical unit - performs all base operations. AMOALU.scala: Atomic memory operation ALU - performs all atomic memory operations. Breakpoint.scala: Breakpoint utilities BTB.scala: Branch target buffer - predicts branch targets Decode.scala: Decoder - applies the bit patterns defined in IDecode Events.</description>
